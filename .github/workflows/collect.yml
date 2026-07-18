@@ -15,6 +15,7 @@ jobs:
       - name: collect
         env:
           SEOUL_API_KEY: ${{ secrets.SEOUL_API_KEY }}
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
         run: python collect.py
       - name: commit
         run: |
