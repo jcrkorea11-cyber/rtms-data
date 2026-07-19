@@ -9,7 +9,7 @@ rone.py — 한국부동산원 R-ONE 부동산통계 수집 (상업용부동산 
 """
 import csv, json, os, sys, time
 START = time.time()
-DEADLINE = 600  # 전체 10분 제한 — 초과 시 수집분만 저장하고 종료
+DEADLINE = 900  # 전체 10분 제한 — 초과 시 수집분만 저장하고 종료
 import urllib.request, urllib.parse
 
 KEY = os.environ.get("RONE_KEY", "").strip()
@@ -109,7 +109,9 @@ def main():
         tables = fetch_all("SttsApiTbl.do")
         print(f"통계표 목록: {save_csv('data/rone/tables.csv', tables)}건")
     ok, fail = 0, 0
-    for tid, label in TARGETS.items():
+    # 미수집 표 우선, 이후 기존 표 갱신 (시간제한 대비)
+    order = sorted(TARGETS.items(), key=lambda kv: os.path.exists(f"data/rone/{kv[0]}.csv"))
+    for tid, label in order:
         try:
             rows = []
             for cyc in ("QY", "YY", "MM"):
