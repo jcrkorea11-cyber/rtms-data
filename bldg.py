@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-# rerun2: 승인 반영 대기 후 재실행 (09:41 UTC)
 bldg.py — 건축물대장(건축HUB) 표제부 대조로 상가·빌딩(통건물) 마스킹 지번 특정
 - 입력: data/nrg_*.csv (국토부 상업업무용 실거래, collect.py 산출물)
         data/rtms_*.csv (서울시 주택 실거래 — 법정동명→법정동코드 매핑용)
@@ -142,15 +141,18 @@ def selftest():
     """같은 키로 A/B 비교: NrgTrade(정상 작동 확인됨) vs 건축HUB. 키는 로그에 출력하지 않음."""
     tests = [
         ("NrgTrade(대조군)", f"https://apis.data.go.kr/1613000/RTMSDataSvcNrgTrade/getRTMSDataSvcNrgTrade?serviceKey={KEY}&LAWD_CD=11680&DEAL_YMD=202501&numOfRows=1"),
-        ("건축HUB http", f"http://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
-        ("건축HUB https", f"https://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
+        ("건축HUB 표제부", f"http://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
+        ("건축HUB 표제부(bun지정)", f"http://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&platGbCd=0&bun=0001&ji=0000&numOfRows=1&pageNo=1"),
+        ("건축HUB 기본개요", f"http://apis.data.go.kr/1613000/BldRgstHubService/getBrBasisOulnInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
+        ("구버전 BldRgstService_v2", f"http://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
     ]
     for name, url in tests:
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (rtms-bldg)"})
             with urllib.request.urlopen(req, timeout=30) as r:
                 b = r.read()
-            print(f"[진단 {name}] status={r.status} len={len(b)} type={r.headers.get('Content-Type')} 앞180바이트={b[:180]!r}")
+                hdrs = {k: v for k, v in r.getheaders() if k.lower() in ("content-type", "content-length", "server", "x-forwarded-for", "location", "set-cookie", "cmcd-error")}
+            print(f"[진단 {name}] status={r.status} len={len(b)} headers={hdrs} 앞200바이트={b[:200]!r}")
         except Exception as e:
             print(f"[진단 {name}] 예외: {e!r}")
 
