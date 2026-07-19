@@ -1,10 +1,10 @@
 마스킹 지번 통건물 거래: 3289건
 법정동코드 매핑 실패 동 89개 → data/bldg_unmapped_dongs.csv
-  [오류] 11680/10800: 응답 파싱 실패 (원문 앞부분): 
-  [오류] 11680/10100: 응답 파싱 실패 (원문 앞부분): 
-  [오류] 11200/11500: 응답 파싱 실패 (원문 앞부분): 
-  [오류] 11140/16200: 응답 파싱 실패 (원문 앞부분): 
-  [오류] 11620/10200: 응답 파싱 실패 (원문 앞부분): 
+  [오류] 11680/10800: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
+  [오류] 11680/10100: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
+  [오류] 11200/11500: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
+  [오류] 11140/16200: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
+  [오류] 11620/10200: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
 [중단] 연속 오류 과다 — 원인 확인 필요
 API 호출 5회 / 캐시 보유 동 0 / 필요 동 287
 매칭 완료: 처리 0건 / 단일 특정 0건 / 후보 없음 0건 → data/bldg_match.csv
