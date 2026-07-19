@@ -137,7 +137,24 @@ def load_masked_deals():
                 })
     return deals
 
+def selftest():
+    """같은 키로 A/B 비교: NrgTrade(정상 작동 확인됨) vs 건축HUB. 키는 로그에 출력하지 않음."""
+    tests = [
+        ("NrgTrade(대조군)", f"https://apis.data.go.kr/1613000/RTMSDataSvcNrgTrade/getRTMSDataSvcNrgTrade?serviceKey={KEY}&LAWD_CD=11680&DEAL_YMD=202501&numOfRows=1"),
+        ("건축HUB http", f"http://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
+        ("건축HUB https", f"https://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo?serviceKey={KEY}&sigunguCd=11680&bjdongCd=10800&numOfRows=1&pageNo=1"),
+    ]
+    for name, url in tests:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (rtms-bldg)"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                b = r.read()
+            print(f"[진단 {name}] status={r.status} len={len(b)} type={r.headers.get('Content-Type')} 앞180바이트={b[:180]!r}")
+        except Exception as e:
+            print(f"[진단 {name}] 예외: {e!r}")
+
 def main():
+    selftest()
     deals = load_masked_deals()
     print(f"마스킹 지번 통건물 거래: {len(deals)}건")
     dmap = build_dong_map()
