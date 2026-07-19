@@ -28,7 +28,8 @@ jobs:
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
         run: |
-          python -u bldg.py 2>&1 | tee data/bldg_log.txt
+          echo "=== run $GITHUB_RUN_ID $(date -u +%FT%TZ) ===" > data/bldg_log.txt
+          python -u bldg.py 2>&1 | tee -a data/bldg_log.txt
           echo "exit_code=${PIPESTATUS[0]}" >> data/bldg_log.txt
 
       - name: Commit & push

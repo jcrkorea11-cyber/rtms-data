@@ -28,7 +28,8 @@ jobs:
         env:
           RONE_KEY: ${{ secrets.RONE_KEY }}
         run: |
-          python -u rone.py 2>&1 | tee data/rone_log.txt
+          echo "=== run $GITHUB_RUN_ID $(date -u +%FT%TZ) ===" > data/rone_log.txt
+          python -u rone.py 2>&1 | tee -a data/rone_log.txt
           echo "exit_code=${PIPESTATUS[0]}" >> data/rone_log.txt
 
       - name: Commit & push

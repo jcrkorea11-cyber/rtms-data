@@ -111,7 +111,11 @@ def main():
     ok, fail = 0, 0
     for tid, label in TARGETS.items():
         try:
-            rows = fetch_all("SttsApiTblData.do", max_pages=15, STATBL_ID=tid, DTACYCLE_CD="QY")
+            rows = []
+            for cyc in ("QY", "YY", "MM"):
+                rows = fetch_all("SttsApiTblData.do", max_pages=15, STATBL_ID=tid, DTACYCLE_CD=cyc)
+                if rows:
+                    break
             c = save_csv(f"data/rone/{tid}.csv", rows)
             print(f"  수집 {label} ({tid}): {c}행")
             ok += 1 if c else 0
