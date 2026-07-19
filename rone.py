@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-# run: RONE_KEY 시크릿 등록 후 1차 실행
 rone.py — 한국부동산원 R-ONE 부동산통계 수집 (상업용부동산 임대동향조사)
 목적: 상권별 임대료 / 공실률 / 소득수익률(실측 캡레이트) / 전환율 자동 수집
 1단계(자동): 통계표 목록 전체 수집 → data/rone/tables.csv
@@ -75,54 +74,49 @@ def fetch_all(api, max_pages=6, psize=1000, **params):
         time.sleep(0.3)
     return allrows
 
+
+# 확정 수집 대상 (2026-07-19 통계표 목록에서 확인한 최신 표 ID)
+TARGETS = {
+  # 수익률 (소득·자본·투자수익률 — 실측 캡레이트 근거)
+  "T245883135037859": "수익률_오피스", "T242083134887473": "수익률_중대형상가",
+  "T246253134913401": "수익률_소규모상가", "T246393134978815": "수익률_집합상가",
+  # 순영업소득 (NOI ㎡당)
+  "TT242303134253883": "순영업소득_오피스", "T248383134665433": "순영업소득_중대형상가",
+  "T248663134928155": "순영업소득_소규모상가", "T243693134953154": "순영업소득_집합상가",
+  # 지역별 임대료 (㎡당)
+  "TT249843134237374": "임대료_오피스", "T244363134858603": "임대료_중대형상가",
+  "T248223134698125": "임대료_소규모상가", "T244913134948657": "임대료_집합상가",
+  # 층별임대료·층별효용비율
+  "T241873134863890": "층별임대료_중대형상가", "T246233134891629": "층별임대료_소규모상가",
+  "T249023134703697": "층별임대료_집합상가",
+  # 지역별 공실률
+  "TT244763134428698": "공실률_오피스", "T249633134845544": "공실률_중대형상가",
+  "T241833134686576": "공실률_소규모상가", "T243283134931290": "공실률_집합상가",
+  "T262303140824764": "공실률_일반상가", "T268603140832693": "공실률_일반상가1층",
+  # 전환율
+  "T241883134877452": "전환율_중대형상가", "T246253134905233": "전환율_소규모상가",
+  # 임대가격지수 시계열 (모멘텀)
+  "TT248473134635539": "임대가격지수_중대형상가", "TT246323134644307": "임대가격지수_소규모상가",
+  "TT247193134654396": "임대가격지수_집합상가", "TT249683134828248": "임대가격지수_통합상가",
+}
+
 def main():
-    # ---- 1단계: 통계표 목록 ----
-    tables = fetch_all("SttsApiTbl.do")
-    n = save_csv("data/rone/tables.csv", tables)
-    print(f"통계표 목록: {n}건 → data/rone/tables.csv")
-    name_key = None
-    if tables:
-        for k in tables[0]:
-            if "NM" in k.upper() and "STATBL" in k.upper():
-                name_key = k
-                break
-        if not name_key:
-            cand = [k for k in tables[0] if "NM" in k.upper()]
-            name_key = cand[0] if cand else None
-    if not name_key:
-        print("[중단] 통계표 이름 컬럼을 찾지 못함 — tables.csv 확인 필요")
-        return
-    id_key = next((k for k in tables[0] if k.upper() == "STATBL_ID"), None) or \
-             next((k for k in tables[0] if "ID" in k.upper()), None)
-
-    # ---- 2단계: 상업용 임대동향 표 자동 선별 ----
-    WANT = ["임대료", "공실", "수익률", "전환율", "임대가격지수", "순영업소득"]
-    targets = []
-    for t in tables:
-        nm = str(t.get(name_key, ""))
-        if ("상업용" in nm or "상가" in nm or "오피스" in nm) and any(w in nm for w in WANT):
-            targets.append((str(t.get(id_key, "")), nm, str(t.get("DTACYCLE_CD", ""))))
-    print(f"선별된 상업용 임대동향 통계표: {len(targets)}개")
-    for tid, nm, cyc in targets[:60]:
-        print(f"  - {tid} [{cyc}] {nm}")
-
-    fetched = 0
-    for tid, nm, cyc in targets[:40]:
-        if not tid:
-            continue
+    if not os.path.exists("data/rone/tables.csv"):
+        tables = fetch_all("SttsApiTbl.do")
+        print(f"통계표 목록: {save_csv('data/rone/tables.csv', tables)}건")
+    ok, fail = 0, 0
+    for tid, label in TARGETS.items():
         try:
-            params = {"STATBL_ID": tid}
-            if cyc:
-                params["DTACYCLE_CD"] = cyc
-            rows = fetch_all("SttsApiTblData.do", **params)
+            rows = fetch_all("SttsApiTblData.do", max_pages=40, STATBL_ID=tid)
             c = save_csv(f"data/rone/{tid}.csv", rows)
-            print(f"  수집 {tid}: {c}행 — {nm}")
-            if c:
-                fetched += 1
+            print(f"  수집 {label} ({tid}): {c}행")
+            ok += 1 if c else 0
+            fail += 0 if c else 1
         except Exception as e:
-            print(f"  [오류] {tid}: {e}")
-        time.sleep(0.3)
-    print(f"완료: 데이터 수집 {fetched}개 표")
+            fail += 1
+            print(f"  [오류] {label} ({tid}): {e}")
+        time.sleep(0.4)
+    print(f"완료: 성공 {ok} / 실패·빈값 {fail} (총 {len(TARGETS)}개 표)")
 
 if __name__ == "__main__":
     main()
