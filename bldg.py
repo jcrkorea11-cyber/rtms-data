@@ -17,7 +17,7 @@ KEY = os.environ.get("DATA_GO_KR_KEY", "").strip()
 if not KEY:
     sys.exit("환경변수 DATA_GO_KR_KEY 가 없습니다 (GitHub Secret 확인)")
 
-API = "https://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo"
+API = "http://apis.data.go.kr/1613000/BldRgstHubService/getBrTitleInfo"  # 주의: 이 서비스는 http (PublicDataReader 검증 구현과 동일)
 MAX_CALLS = int(os.environ.get("BLDG_MAX_CALLS", "8000"))   # 일일 트래픽 보호(10,000/일 한도 가정)
 ROWS_PER_PAGE = 100
 AREA_TOL_PCT = 0.02      # 대지면적 허용 오차 ±2%
@@ -33,10 +33,11 @@ def api_get(params):
     calls += 1
     q = urllib.parse.urlencode({**params, "serviceKey": KEY, "numOfRows": ROWS_PER_PAGE})
     url = f"{API}?{q}"
-    body = ""
+    body, last_err = "", ""
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(url, timeout=30) as r:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (rtms-bldg)"})
+            with urllib.request.urlopen(req, timeout=30) as r:
                 body = r.read().decode("utf-8", "replace")
             root = ET.fromstring(body)
             if root.tag == "OpenAPI_ServiceResponse":  # data.go.kr 표준 오류(키 미승인 등)
@@ -51,9 +52,10 @@ def api_get(params):
             return total, items
         except PermissionError:
             raise
-        except Exception:
+        except Exception as e:
+            last_err = repr(e)
             if attempt == 2:
-                raise RuntimeError(f"응답 파싱 실패 (원문 앞부분): {body[:300]}")
+                raise RuntimeError(f"호출 실패: {last_err} / 원문: {body[:300]!r}")
             time.sleep(2 * (attempt + 1))
     return 0, []
 
