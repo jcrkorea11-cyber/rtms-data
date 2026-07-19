@@ -1,0 +1,43 @@
+name: bldg-jibun-match
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["bldg.py", ".github/workflows/bldg.yml"]   # 파일 갱신 즉시 자동 실행
+  schedule:
+    - cron: "0 1 * * *"   # 10:00 KST — 미수집 동이 남아 있으면 매일 이어서 수집
+
+concurrency:
+  group: rtms-repo-push
+  cancel-in-progress: false
+
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run bldg matcher
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: |
+          python -u bldg.py 2>&1 | tee data/bldg_log.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> data/bldg_log.txt
+
+      - name: Commit & push
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "bldg: jibun match $(date -u +%F)"
+          git pull --rebase origin main
+          git push
