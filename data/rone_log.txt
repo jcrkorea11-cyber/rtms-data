@@ -1,0 +1,2 @@
+RONE_KEY 시크릿이 없습니다 — GitHub 저장소 Settings > Secrets and variables > Actions 에 RONE_KEY 등록 필요
+exit_code=0
