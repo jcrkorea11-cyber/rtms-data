@@ -1,3 +1,6 @@
+[진단 NrgTrade(대조군)] status=200 len=893 type=application/xml;charset=utf-8 앞180바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear'
+[진단 건축HUB http] status=200 len=0 type=None 앞180바이트=b''
+[진단 건축HUB https] status=200 len=0 type=None 앞180바이트=b''
 마스킹 지번 통건물 거래: 3289건
 법정동코드 매핑 실패 동 89개 → data/bldg_unmapped_dongs.csv
   [오류] 11680/10800: 호출 실패: ParseError('no element found: line 1, column 0') / 원문: ''
