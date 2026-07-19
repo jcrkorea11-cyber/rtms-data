@@ -1,24 +1,11 @@
 마스킹 지번 통건물 거래: 3289건
 법정동코드 매핑 실패 동 89개 → data/bldg_unmapped_dongs.csv
-Traceback (most recent call last):
-  File "/home/runner/work/rtms-data/rtms-data/bldg.py", line 224, in <module>
-    main()
-  File "/home/runner/work/rtms-data/rtms-data/bldg.py", line 159, in main
-    p = fetch_dong(sgg, bjd)
-        ^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/rtms-data/rtms-data/bldg.py", line 63, in fetch_dong
-    body = api_get({"sigunguCd": sgg, "bjdongCd": bjd, "pageNo": page})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/rtms-data/rtms-data/bldg.py", line 41, in api_get
-    j = json.loads(body)
-        ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/__init__.py", line 346, in loads
-    return _default_decoder.decode(s)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-exit_code=1
+  [오류] 11680/10800: 응답 파싱 실패 (원문 앞부분): 
+  [오류] 11680/10100: 응답 파싱 실패 (원문 앞부분): 
+  [오류] 11200/11500: 응답 파싱 실패 (원문 앞부분): 
+  [오류] 11140/16200: 응답 파싱 실패 (원문 앞부분): 
+  [오류] 11620/10200: 응답 파싱 실패 (원문 앞부분): 
+[중단] 연속 오류 과다 — 원인 확인 필요
+API 호출 5회 / 캐시 보유 동 0 / 필요 동 287
+매칭 완료: 처리 0건 / 단일 특정 0건 / 후보 없음 0건 → data/bldg_match.csv
+exit_code=0
