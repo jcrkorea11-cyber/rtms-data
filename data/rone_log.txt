@@ -1,51 +1,7 @@
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 수익률_오피스 (T245883135037859): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 수익률_중대형상가 (T242083134887473): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 수익률_소규모상가 (T246253134913401): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 수익률_집합상가 (T246393134978815): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 순영업소득_오피스 (TT242303134253883): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 순영업소득_중대형상가 (T248383134665433): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 순영업소득_소규모상가 (T248663134928155): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 순영업소득_집합상가 (T243693134953154): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대료_오피스 (TT249843134237374): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대료_중대형상가 (T244363134858603): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대료_소규모상가 (T248223134698125): 0행
-  [오류] 임대료_집합상가 (T244913134948657): SttsApiTblData.do 호출 실패: RemoteDisconnected('Remote end closed connection without response')
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 층별임대료_중대형상가 (T241873134863890): 0행
-  [오류] 층별임대료_소규모상가 (T246233134891629): SttsApiTblData.do 호출 실패: RemoteDisconnected('Remote end closed connection without response')
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 층별임대료_집합상가 (T249023134703697): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_오피스 (TT244763134428698): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_중대형상가 (T249633134845544): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_소규모상가 (T241833134686576): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_집합상가 (T243283134931290): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_일반상가 (T262303140824764): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 공실률_일반상가1층 (T268603140832693): 0행
-  [오류] 전환율_중대형상가 (T241883134877452): SttsApiTblData.do 호출 실패: RemoteDisconnected('Remote end closed connection without response')
-  [오류] 전환율_소규모상가 (T246253134905233): SttsApiTblData.do 호출 실패: RemoteDisconnected('Remote end closed connection without response')
-  [오류] 임대가격지수_중대형상가 (TT248473134635539): SttsApiTblData.do 호출 실패: RemoteDisconnected('Remote end closed connection without response')
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대가격지수_소규모상가 (TT246323134644307): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대가격지수_집합상가 (TT247193134654396): 0행
-  [주의] SttsApiTblData.do 첫 페이지 row 없음 — 원문 앞 300자: {"RESULT":{"CODE":"ERROR-300","MESSAGE":"필수 값이 누락되어 있습니다. 요청인자를 참고 하십시오."}}
-  수집 임대가격지수_통합상가 (TT249683134828248): 0행
-완료: 성공 0 / 실패·빈값 27 (총 27개 표)
-exit_code=0
+  수집 수익률_오피스 (T245883135037859): 1533행
+  수집 수익률_중대형상가 (T242083134887473): 6405행
+  수집 수익률_소규모상가 (T246253134913401): 5796행
+  수집 수익률_집합상가 (T246393134978815): 5271행
+  수집 순영업소득_오피스 (TT242303134253883): 2555행
+  수집 순영업소득_중대형상가 (T248383134665433): 10675행
+  수집 순영업소득_소규모상가 (T248663134928155): 9660행
