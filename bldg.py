@@ -9,8 +9,9 @@ bldg.py — 건축물대장(건축HUB) 표제부 대조로 상가·빌딩(통건
 - 원칙: 신고 원본만 사용, 추정 금지. 매칭 조건(지번 패턴 + 대지면적 + 준공년도)을 모두
         만족하는 후보만 기록하고, 후보 수를 그대로 남긴다(후보 1건 = 사실상 특정).
 """
-import csv, glob, json, os, re, sys, time
+import csv, glob, os, re, sys, time
 import urllib.request, urllib.parse
+import xml.etree.ElementTree as ET
 
 KEY = os.environ.get("DATA_GO_KR_KEY", "").strip()
 if not KEY:
@@ -27,27 +28,34 @@ os.makedirs("data/bldg", exist_ok=True)
 calls = 0
 
 def api_get(params):
+    """XML 응답 파싱. 반환: (totalCount, [item dict...])"""
     global calls
     calls += 1
-    q = urllib.parse.urlencode({**params, "serviceKey": KEY, "_type": "json",
-                                "numOfRows": ROWS_PER_PAGE})
+    q = urllib.parse.urlencode({**params, "serviceKey": KEY, "numOfRows": ROWS_PER_PAGE})
     url = f"{API}?{q}"
+    body = ""
     for attempt in range(3):
         try:
             with urllib.request.urlopen(url, timeout=30) as r:
                 body = r.read().decode("utf-8", "replace")
-            if body.lstrip().startswith("<"):  # 키 미승인/오류 시 XML 에러 반환
-                raise RuntimeError(f"XML 응답(키 미승인/한도초과 의심): {body[:200]}")
-            j = json.loads(body)
-            hdr = j["response"]["header"]
-            if hdr.get("resultCode") not in ("00", "0"):
-                raise RuntimeError(f"API 오류 {hdr.get('resultCode')}: {hdr.get('resultMsg')}")
-            return j["response"]["body"]
-        except Exception as e:
+            root = ET.fromstring(body)
+            if root.tag == "OpenAPI_ServiceResponse":  # data.go.kr 표준 오류(키 미승인 등)
+                msg = (root.findtext(".//returnAuthMsg") or root.findtext(".//errMsg") or "").strip()
+                code = (root.findtext(".//returnReasonCode") or "").strip()
+                raise PermissionError(f"API 거부 [{code}] {msg} — 건축HUB 활용신청 승인 여부 확인 필요")
+            rc = (root.findtext(".//header/resultCode") or "").strip()
+            if rc not in ("", "00", "0"):
+                raise RuntimeError(f"API 오류 {rc}: {root.findtext('.//header/resultMsg')}")
+            total = int(root.findtext(".//body/totalCount") or 0)
+            items = [{c.tag: (c.text or "").strip() for c in it} for it in root.iter("item")]
+            return total, items
+        except PermissionError:
+            raise
+        except Exception:
             if attempt == 2:
-                raise
+                raise RuntimeError(f"응답 파싱 실패 (원문 앞부분): {body[:300]}")
             time.sleep(2 * (attempt + 1))
-    return None
+    return 0, []
 
 def fetch_dong(sgg, bjd):
     """동 전체 표제부 수집(페이지네이션). 완료 시에만 캐시 파일 생성."""
@@ -55,20 +63,15 @@ def fetch_dong(sgg, bjd):
     path = f"data/bldg/{sgg}_{bjd}.csv"
     if os.path.exists(path):
         return path
-    rows, page, total = [], 1, None
+    rows, page, total = [], 1, 0
     while True:
         if calls >= MAX_CALLS:
             print(f"  [예산 소진] {sgg}/{bjd} 중단 — 다음 실행에서 이어서 수집")
             return None
-        body = api_get({"sigunguCd": sgg, "bjdongCd": bjd, "pageNo": page})
-        total = int(body.get("totalCount", 0))
-        items = (body.get("items") or {})
-        item = items.get("item") if isinstance(items, dict) else None
-        if item is None:
+        total, items = api_get({"sigunguCd": sgg, "bjdongCd": bjd, "pageNo": page})
+        if not items:
             break
-        if isinstance(item, dict):
-            item = [item]
-        rows.extend(item)
+        rows.extend(items)
         if page * ROWS_PER_PAGE >= total:
             break
         page += 1
@@ -154,9 +157,20 @@ def main():
                 w.writerow([sgg, nm, n])
         print(f"법정동코드 매핑 실패 동 {len(unmapped)}개 → data/bldg_unmapped_dongs.csv")
 
-    fetched = {}
+    fetched, errors = {}, 0
     for (sgg, bjd), n in sorted(need.items(), key=lambda x: -x[1]):
-        p = fetch_dong(sgg, bjd)
+        try:
+            p = fetch_dong(sgg, bjd)
+        except PermissionError as e:
+            print(f"[중단] {e}")
+            break
+        except Exception as e:
+            errors += 1
+            print(f"  [오류] {sgg}/{bjd}: {e}")
+            if errors >= 5:
+                print("[중단] 연속 오류 과다 — 원인 확인 필요")
+                break
+            continue
         if p:
             fetched[(sgg, bjd)] = p
         if calls >= MAX_CALLS:
