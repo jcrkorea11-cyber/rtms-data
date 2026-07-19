@@ -1,0 +1,43 @@
+name: rone-rent-stats
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["rone.py", ".github/workflows/rone.yml"]
+  schedule:
+    - cron: "0 2 * * 1"   # 매주 월 11:00 KST (분기 통계라 주 1회면 충분)
+
+concurrency:
+  group: rtms-repo-push
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Collect R-ONE stats
+        env:
+          RONE_KEY: ${{ secrets.RONE_KEY }}
+        run: |
+          python -u rone.py 2>&1 | tee data/rone_log.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> data/rone_log.txt
+
+      - name: Commit & push
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "rone: rent stats $(date -u +%F)"
+          git pull --rebase origin main
+          git push
