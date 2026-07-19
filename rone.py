@@ -8,6 +8,8 @@ rone.py — 한국부동산원 R-ONE 부동산통계 수집 (상업용부동산 
 로그: data/rone_log.txt (워크플로가 커밋) — 키는 로그에 출력하지 않음
 """
 import csv, json, os, sys, time
+START = time.time()
+DEADLINE = 600  # 전체 10분 제한 — 초과 시 수집분만 저장하고 종료
 import urllib.request, urllib.parse
 
 KEY = os.environ.get("RONE_KEY", "").strip()
@@ -22,13 +24,13 @@ def call(api, **params):
     q = urllib.parse.urlencode({"KEY": KEY, "Type": "json", **params})
     url = f"{BASE}/{api}?{q}"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (rtms-rone)"})
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            with urllib.request.urlopen(req, timeout=40) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
                 body = r.read().decode("utf-8", "replace")
             return json.loads(body), body
         except Exception as e:
-            if attempt == 2:
+            if attempt == 1:
                 raise RuntimeError(f"{api} 호출 실패: {e!r} / 원문: {body[:200]!r}" if 'body' in dir() else f"{api} 호출 실패: {e!r}")
             time.sleep(2 * (attempt + 1))
 
@@ -60,6 +62,8 @@ def save_csv(path, rows):
     return len(rows)
 
 def fetch_all(api, max_pages=6, psize=1000, **params):
+    if time.time() - START > DEADLINE:
+        raise RuntimeError("전체 시간제한 초과")
     allrows = []
     for p in range(1, max_pages + 1):
         j, raw = call(api, pIndex=p, pSize=psize, **params)
@@ -107,7 +111,7 @@ def main():
     ok, fail = 0, 0
     for tid, label in TARGETS.items():
         try:
-            rows = fetch_all("SttsApiTblData.do", max_pages=40, STATBL_ID=tid, DTACYCLE_CD="QY")
+            rows = fetch_all("SttsApiTblData.do", max_pages=15, STATBL_ID=tid, DTACYCLE_CD="QY")
             c = save_csv(f"data/rone/{tid}.csv", rows)
             print(f"  수집 {label} ({tid}): {c}행")
             ok += 1 if c else 0

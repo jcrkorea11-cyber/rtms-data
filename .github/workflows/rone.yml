@@ -9,8 +9,8 @@ on:
     - cron: "0 2 * * 1"   # 매주 월 11:00 KST (분기 통계라 주 1회면 충분)
 
 concurrency:
-  group: rtms-repo-push
-  cancel-in-progress: false
+  group: rone-run
+  cancel-in-progress: true
 
 jobs:
   collect:
