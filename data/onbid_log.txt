@@ -1,4 +1,10 @@
-=== run 29713287760 2026-07-20T02:49:05Z ===
+=== run 29713375703 2026-07-20T02:52:04Z ===
+== 명세 탐색 ==
+  [명세 swagger.json] 예외: <HTTPError 404: 'Not Found'>
+  [명세 openapi.json] 예외: <HTTPError 404: 'Not Found'>
+  [명세 api-docs] 예외: <HTTPError 404: 'Not Found'>
+  [명세 swagger-ui.html] 예외: <HTTPError 404: 'Not Found'>
+  [명세 (root)] 예외: <HTTPError 500: 'Internal Server Error'>
 == 연산명 탐색 ==
   [OnbidRlstListSrvc2/getRlstList2] status=404 total=None items=0 앞200자='API not found '
   [OnbidRlstListSrvc2/getOnbidRlstList2] status=404 total=None items=0 앞200자='API not found '
