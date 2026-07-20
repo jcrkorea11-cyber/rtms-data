@@ -17,6 +17,7 @@ if not KEY:
     sys.exit(0)
 
 BASE = "https://apis.data.go.kr/B010003"
+BASE_PARAMS = {}
 os.makedirs("data/onbid", exist_ok=True)
 calls = 0
 MAX_CALLS = 800   # 일일 트래픽 1000/서비스 보호
@@ -78,6 +79,32 @@ def save_csv(path, rows):
             w.writerow([r.get(c, "") for c in cols])
     return len(rows)
 
+
+def param_discover(service, op):
+    """필수 파라미터 조합 탐색 — resultCode 00/데이터 반환 조합을 찾는다"""
+    combos = [
+        {"DPSL_MTD_CD": "0001"},
+        {"DPSL_MTD_CD": "0001", "CTGR_HIRK_ID": "10000"},
+        {"CTGR_HIRK_ID": "10000"},
+        {"SIDO": "서울특별시"},
+        {"DPSL_MTD_CD": "0001", "SIDO": "서울특별시"},
+        {"PBCT_BEGN_DTM": "202607010000", "PBCT_CLS_DTM": "202608312359"},
+        {"DPSL_MTD_CD": "0001", "PBCT_BEGN_DTM": "202607010000", "PBCT_CLS_DTM": "202608312359"},
+        {"BID_BEGN_YMD": "20260701", "BID_CLS_YMD": "20260831"},
+        {"PBNC_BGNG_YMD": "20260701", "PBNC_END_YMD": "20260831"},
+        {"RQST_BGNG_YMD": "20260701", "RQST_END_YMD": "20260831"},
+    ]
+    for c in combos:
+        st, body = call(service, op, numOfRows=3, **c)
+        total, items = parse_items(body)
+        rc = ""
+        m = re.search(r"<resultCode>([^<]*)</resultCode>", body)
+        if m: rc = m.group(1)
+        print(f"  [파라미터 {c}] status={st} rc={rc} total={total} items={len(items)}")
+        if items:
+            return c, items
+    return None, []
+
 def main():
     # ---- 1) 연산명 탐색 (공고목록은 op 확정: getPbancList2) ----
     print("== 연산명 탐색 ==")
@@ -92,14 +119,22 @@ def main():
         print("  물건목록 필드:", sorted(sample[0].keys()))
 
     if not op_rlst:
-        print("[중단] 물건목록 연산명을 찾지 못함 — 활용가이드 문서 확인 필요 (승인 반영 지연 가능성도 있음: 건축HUB는 익일 반영이었음)")
-        return
+        # 연산명은 응답했지만 필수 파라미터 미충족(rc=11)인 경우 → getRlstCltrList2로 파라미터 탐색
+        op_rlst = "getRlstCltrList2"
+        print("== 필수 파라미터 탐색 (getRlstCltrList2) ==")
+        pc, sample = param_discover("OnbidRlstListSrvc2", op_rlst)
+        if not pc:
+            print("[중단] 필수 파라미터 조합을 찾지 못함 — 활용가이드 docx 필요 (사용자에게 미리보기 화면 요청)")
+            return
+        global BASE_PARAMS
+        BASE_PARAMS = pc
+        print(f"  확정 파라미터: {pc}")
 
     # ---- 2) 부동산 물건목록 수집 (전체 페이지 → 서울만 저장) ----
     print("== 물건목록 수집 ==")
     allrows, page = [], 1
     while calls < MAX_CALLS:
-        st, body = call("OnbidRlstListSrvc2", op_rlst, numOfRows=100, pageNo=page)
+        st, body = call("OnbidRlstListSrvc2", op_rlst, numOfRows=100, pageNo=page, **BASE_PARAMS)
         total, items = parse_items(body)
         if not items:
             break
