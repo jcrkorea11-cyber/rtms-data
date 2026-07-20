@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-# rerun4: 2026-07-20 익일 키 동기화 확인
 bldg.py — 건축물대장(건축HUB) 표제부 대조로 상가·빌딩(통건물) 마스킹 지번 특정
 - 입력: data/nrg_*.csv (국토부 상업업무용 실거래, collect.py 산출물)
         data/rtms_*.csv (서울시 주택 실거래 — 법정동명→법정동코드 매핑용)
@@ -138,6 +137,35 @@ def load_masked_deals():
                 })
     return deals
 
+
+def seoul_probe():
+    """서울 열린데이터광장 건축물대장 표제부 API 탐색 (해외 IP 차단 우회로)"""
+    skey = os.environ.get("SEOUL_API_KEY", "").strip()
+    try:
+        req = urllib.request.Request("https://data.seoul.go.kr/dataList/OA-15389/S/1/datasetView.do",
+                                     headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            html = r.read().decode("utf-8", "replace")
+        m = re.findall(r"openapi\.seoul\.go\.kr[:0-9]*/[^/]*/(?:json|xml)/([A-Za-z0-9_]+)", html)
+        names = sorted(set(m + re.findall(r'"SERVICE"\s*:\s*"([A-Za-z0-9_]+)"', html)))
+        print(f"[서울탐색] 페이지에서 발견한 서비스명 후보: {names[:10]}")
+        cands = names[:5]
+    except Exception as e:
+        print(f"[서울탐색] 페이지 조회 실패: {e!r}")
+        cands = []
+    cands = cands + ["BldRgstStdInfo", "buildingRgstInfo", "OpenBldRgstInfo"]
+    if not skey:
+        print("[서울탐색] SEOUL_API_KEY 없음"); return
+    for svc in cands:
+        url = f"http://openapi.seoul.go.kr:8088/{skey}/json/{svc}/1/2/"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                b = r.read().decode("utf-8", "replace")
+            print(f"[서울탐색] {svc}: len={len(b)} 앞300자={re.sub(chr(10),' ',b[:300])!r}")
+        except Exception as e:
+            print(f"[서울탐색] {svc}: 예외 {e!r}")
+
 def selftest():
     """같은 키로 A/B 비교: NrgTrade(정상 작동 확인됨) vs 건축HUB. 키는 로그에 출력하지 않음."""
     tests = [
@@ -158,6 +186,7 @@ def selftest():
             print(f"[진단 {name}] 예외: {e!r}")
 
 def main():
+    seoul_probe()
     selftest()
     deals = load_masked_deals()
     print(f"마스킹 지번 통건물 거래: {len(deals)}건")

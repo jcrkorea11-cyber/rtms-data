@@ -27,6 +27,7 @@ jobs:
       - name: Run bldg matcher
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          SEOUL_API_KEY: ${{ secrets.SEOUL_API_KEY }}
         run: |
           echo "=== run $GITHUB_RUN_ID $(date -u +%FT%TZ) ===" > data/bldg_log.txt
           python -u bldg.py 2>&1 | tee -a data/bldg_log.txt
