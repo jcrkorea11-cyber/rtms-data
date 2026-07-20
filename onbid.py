@@ -60,7 +60,7 @@ def discover(service, candidates):
     """연산명 후보를 시도해 작동하는 것을 찾는다"""
     for op in candidates:
         st, body = call(service, op, numOfRows=3)
-        head = body[:200].replace("\n", " ")
+        head = re.sub(r"\s+", " ", body[:500])
         total, items = parse_items(body)
         print(f"  [{service}/{op}] status={st} total={total} items={len(items)} 앞200자={head!r}")
         if items or (total and total > 0):
@@ -82,7 +82,9 @@ def main():
     # ---- 1) 연산명 탐색 (공고목록은 op 확정: getPbancList2) ----
     print("== 연산명 탐색 ==")
     op_rlst, sample = discover("OnbidRlstListSrvc2",
-        ["getRlstList2", "getOnbidRlstList2", "getRlstList", "getOnbidRlstList"])
+        ["getRlstList2", "getOnbidRlstList2", "getRlstList", "getOnbidRlstList",
+         "getRlstCltrList2", "getOnbidRlstCltrList2", "getRealEstateList2",
+         "getRlstBasisList2", "getOnbidRlstListInfo2", "getRlstListInfo2"])
     op_pbanc, _ = discover("OnbidPbancListSrvc2", ["getPbancList2"])
     op_bid, _ = discover("OnbidCltrBidRsltListSrvc2",
         ["getCltrBidRsltList2", "getOnbidCltrBidRsltList2", "getCltrBidRsltList"])
