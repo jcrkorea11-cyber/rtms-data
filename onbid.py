@@ -105,8 +105,27 @@ def param_discover(service, op):
             return c, items
     return None, []
 
+
+def probe_spec():
+    """서비스 명세 자동 탐색 (swagger/openapi 노출 여부)"""
+    for path in ("swagger.json", "openapi.json", "api-docs", "swagger-ui.html", ""):
+        url = f"{BASE}/OnbidRlstListSrvc2/{path}" if path else f"{BASE}/OnbidRlstListSrvc2"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=15) as r:
+                b = r.read().decode("utf-8", "replace")
+            print(f"  [명세 {path or '(root)'}] status={r.status} len={len(b)} 앞400자={re.sub(chr(10),' ',b[:400])!r}")
+            if "parameter" in b.lower() or "swagger" in b.lower():
+                open("data/onbid/spec.txt","w").write(b[:20000])
+                print("  → 명세 저장: data/onbid/spec.txt")
+                return
+        except Exception as e:
+            print(f"  [명세 {path or '(root)'}] 예외: {e!r}")
+
 def main():
     # ---- 1) 연산명 탐색 (공고목록은 op 확정: getPbancList2) ----
+    print("== 명세 탐색 ==")
+    probe_spec()
     print("== 연산명 탐색 ==")
     op_rlst, sample = discover("OnbidRlstListSrvc2",
         ["getRlstList2", "getOnbidRlstList2", "getRlstList", "getOnbidRlstList",
