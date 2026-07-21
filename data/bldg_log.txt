@@ -1,12 +1,12 @@
-=== run 29738696376 2026-07-20T11:29:01Z ===
+=== run 29821059826 2026-07-21T10:08:28Z ===
 [서울탐색] 페이지에서 발견한 서비스명 후보: []
 [서울탐색] BldRgstStdInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] buildingRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] OpenBldRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
-[진단 NrgTrade(대조군)] status=200 len=893 headers={'Content-Length': '893', 'Content-Type': 'application/xml;charset=utf-8', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=DBFE25166DB363378AFF7EB1630E1C42; Path=/oasis; Secure; HttpOnly'} 앞200바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear><buildingAr>399.63<'
-[진단 건축HUB 표제부] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=3-6cOC1lipshBot9ro0Xs0Kc-qy5mFNn9VP5Byy-.api10; path=/'} 앞200바이트=b''
-[진단 건축HUB 표제부(bun지정)] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=M1T0jH5cNpmjc9v2rkgu1HJxVSQiOTXP6vEIx7-n.api10; path=/'} 앞200바이트=b''
-[진단 건축HUB 기본개요] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=f4vo9GIFWHGP8q76LAWNMJlXkpGLNDjbxGezSWWb.api20; path=/'} 앞200바이트=b''
+[진단 NrgTrade(대조군)] status=200 len=893 headers={'Content-Length': '893', 'Content-Type': 'application/xml;charset=utf-8', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=DB645ACE8D4CDEC9F29EA6140E5EB7F4; Path=/oasis; Secure; HttpOnly'} 앞200바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear><buildingAr>399.63<'
+[진단 건축HUB 표제부] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=CnvDTh6H4vdVQJMfeun7_NVVQ2-vlb0JEk0gqlgC.api10; path=/'} 앞200바이트=b''
+[진단 건축HUB 표제부(bun지정)] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=caA4ncaQu4qgqqZMo4xcA8zTkxruGL9Ka9SOilPp.api20; path=/'} 앞200바이트=b''
+[진단 건축HUB 기본개요] status=200 len=0 headers={'Content-Length': '0', 'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=n7h8G1a2mwcDCQj6Dijyhfk5vcFfIjI1cyY971v7.api10; path=/'} 앞200바이트=b''
 [진단 구버전 BldRgstService_v2] 예외: <HTTPError 500: 'Internal Server Error'>
 마스킹 지번 통건물 거래: 3289건
 법정동코드 매핑 실패 동 89개 → data/bldg_unmapped_dongs.csv
