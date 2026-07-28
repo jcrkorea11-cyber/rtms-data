@@ -1,0 +1,30 @@
+name: debug-probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["debug_probe.py"]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe
+        run: |
+          echo "=== run $GITHUB_RUN_ID $(date -u +%FT%TZ) ===" > data/debug_log.txt
+          python -u debug_probe.py 2>&1 | tee -a data/debug_log.txt
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --cached --quiet && echo no changes && exit 0
+          git commit -m "debug: probe $(date -u +%H%M)"
+          for i in 1 2 3; do git pull --rebase origin main && git push && exit 0; sleep 5; done
+          exit 1
