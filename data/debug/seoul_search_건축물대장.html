@@ -1,0 +1,2662 @@
+
+
+
+   
+
+     
+
+
+
+
+     
+
+<!doctype html>
+<html lang="ko">
+<head>
+	<!-- Global site tag (gtag.js) Google Analytics -->
+	<script async src="//www.googletagmanager.com/gtag/js?id=G-0T3XG23CN7"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-0T3XG23CN7');
+	</script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="title" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <!-- meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/--><!-- ios때문에 이렇게 한다고하는데..w3s의 권장은 윗줄 -->   
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content=""/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content="https://data.seoul.go.kr:8580/resources/img/common/logo.png">
+    <meta property="og:url" content="https://data.seoul.go.kr">
+      
+    <link rel="stylesheet" href="/resources/css/ui.base.css?ver=230331"> <!-- css수정시 새로고침 안해도 되도록.. -->
+    <link rel="stylesheet" href="/resources/lib/owl.carousel.css">
+    
+ 	<!-- <link rel="shortcut icon" href="//data.seoul.go.kr/images/favicon.ico"  type="image/x-icon" /> --><!-- 20220701 icon 노출 -->
+	<link rel="icon" href="//data.seoul.go.kr/images/favicon.png" type="image/x-icon" /><!-- 20220622 -->
+	<link rel="canonical" href="https://data.seoul.go.kr">
+    
+	<link rel="stylesheet" href="/resources/css/ui.renewal.css?ver=20230330"> <!-- 20220615  -->
+	
+
+    <script src="/js/jQuery-2.1.4.min.js"></script>
+    
+	<script src="/resources/lib/owl.carousel.js"></script>
+	<script src="/resources/js/ui.global.js"></script>
+	<script src="/resources/js/ui.plugins.js"></script>
+	<!-- <script src="/resources/js/ui.common.js"></script>-->
+	<script src="/resources/js/ui.common-renewal.js"></script> <!-- 20220615  -->
+	
+	<script src="/js/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="/css/jquery.modal.min.css">
+	
+    <script src="/js/jquery-ui.min.js"></script> <!-- 2017.11.02 스크롤관련 js 추가 -->
+	<script src="/js/jquery.jb.acescroll.js"></script> <!-- 2017.11.02 스크롤관련 js 추가 -->
+    <script src="/js/jquery.mousewheel.js"></script> <!-- 2017.11.02 스크롤관련 js 추가 -->
+	<script src="/js/jquery.DB_navi3DSwap.min.js"></script>
+	<link rel="stylesheet" href="/css/animate.min.css" />  <!-- 2017.11.11 추가 -->
+	<!-- jQuery 1.7+, IE 7+ -->
+	<script src="/js/jquery.event.drag-1.5.1.min.js"></script>
+	<script src="/js/jquery.touchSlider.js"></script>	
+	<title>서울 열린데이터광장</title>
+	
+	
+	<script>
+	var console = window.console || { log:function(){} };
+
+	function chgTitle(main, sub, bottom) {
+	    var title = "";
+	    var top = "서울열린데이터광장";
+	    
+	    if(top == main) {
+	        $('title').text(main);
+	        return;
+	    }
+	    
+	    if(bottom != null && bottom != '') { title += bottom +'> '; }
+	    if(sub != null && sub != '') { title += sub + '> ' ; }
+	    if(main != null && main != '') { title += main; }
+	    title += ' | ' + top;
+	    
+	    $('title').text(title);
+	}
+	
+	function naviSet(naviSetMenu, naviSetSubtTtle){
+		$('#naviSet').text(naviSetMenu);
+		$('#subTitle').text(naviSetSubtTtle);
+		$('#menuName').text(naviSetMenu);
+	}
+	
+	//20200910 웹접근성관련 ie의 본문바로가기 실행후 메뉴로 가는 버그때문에 추가
+	function skipMenu(sectionStr) {
+		var loc = "#"+sectionStr;
+		$(loc).prop("tabindex","0");
+		document.location.href = loc;
+		
+		$(loc).keyup(function() {
+			$(loc).removeAttr("tabindex");
+		});
+	}
+	
+	//20220622 main_renewal관련
+	$(document).ready(function(){
+		if(window.location.href.indexOf('/index.do') < 0 && window.location.pathname != '/') {
+			$("body").attr("class", "web-renewal");
+		}
+	});
+	
+	</script>
+		
+		<!-- 수정  -->
+
+<!-- 수정  -->
+
+
+
+ 
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<!-- 통합검색 start -->
+
+
+
+<!-- 카테고리별 검색 쿼리  불러오기 items에 불러올 카테고리 구붙자로 구분( ex)dataset,catalog,board,datavisual,gallery,knowledge )-->
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+<!-- 메뉴 -->
+
+
+
+
+
+
+                
+
+
+
+
+
+<!-- 게시물 -->
+
+<!-- 검색 쿼리  -->
+
+<script src="/js/konan/jquery/jquery-ui.js"></script>
+<!--jQuery UI -->
+<script src="/js/konan/jquery/jquery.cookie.js"></script>
+<!-- Cookie -->
+<script src="/js/konan/jquery/i18n/jquery.konan.sf-ko.js"></script>
+<!-- KSF localization -->
+<script src="/js/konan/jquery/jquery.konan.sf.js"></script>
+<!-- KSF -->
+<script src="/js/konan/jquery/jquery.pagination.js"></script>
+
+<script type="text/javascript" src="/js/konan/search.js?ver=20220628"></script>
+<script type="text/javascript" src="/js/konan/beta.fix.js"></script>
+<script type="text/javascript" src="/js/konan/ark.js"></script>
+
+
+<!-- KSF -->
+<script src="/js/konan/KDaViF.js"></script>
+<!-- KONAN KSF JS :: E--> 
+
+<script type="text/javascript">	
+$(function() {
+
+	// 내가 찾은 검색어
+	setMyKeyword("null", 1);
+	
+	//연관어
+	getRelationQuery("https://newsearch.seoul.go.kr/ksearch/ksm/tma/relatedword.do","null");
+	
+	
+});
+
+$(document).ready(function() {
+	
+	// 네비(메뉴명) 세팅	..
+	naviSet("데이터셋목록", "공공데이터");
+	// title 설정
+    chgTitle("공공데이터", "공공데이터");
+	
+	
+	
+	//검색 엔터
+	$('input[name=searchKeyword]').keydown(function(e) {
+		if (e.keyCode == 13) { 
+        	totalSend();
+        }
+    });	
+	
+	
+	//정렬선택
+	/*$("#sortColByCheck").on("change", function() {		
+		$('#sortColBy').val( $(this).val() );
+		searchSend();
+	});*/
+	
+	//정렬선택 이동
+	$('#btSortColBy').click(function(){
+		$('#sortColBy').val( $("#sortColByCheck").val() );
+		//totalSend();
+		searchMoreSend();
+	});
+	
+	//재검색 설정
+	$('#searchChk').click(function(e) {
+		if($('#searchChk').prop("checked")){			
+			$('#resSearch').val('Y');		
+		} else {
+			$('#resSearch').val('N');
+		}
+	});
+	
+	
+	//더보기 버튼
+	$("button[class^=btn-base-s]").on("click", function(){
+		var str = $(this).find("span").text();
+		if(str == "더보기"){
+			$(this).parent().parent().find("dd").find("ul").find("li").show();
+			$(this).find("span").text("줄이기");
+		}else{
+			var li_list = $(this).parent().parent().find("dd").find("ul").find("li");
+			li_list.each(function(index, item){
+				if(index > 4)
+					$(this).hide();
+			});
+			$(this).find("span").text("더보기");
+		}			
+	});
+	
+	//카테고리
+	$("#categoryGroups li > button").on("click", function(){
+		if($(this).hasClass("selected"))
+			$(this).removeClass("selected");
+		else
+			$(this).addClass("selected");
+		
+		var str = "";
+		$("#categoryGroups li > button[class=selected]").each(function(index, item){
+			if(index == 0)
+				str += $(this).attr('data-mapId');
+			else
+				str += ","+$(this).attr('data-mapId');
+		});
+
+		$("#mapId").val(str);
+		searchSend('cate');
+	});
+		
+	//제공유형
+	$("#serviceGroups li > button").on("click", function(){
+		if($(this).hasClass("selected"))
+			$(this).removeClass("selected");
+		else
+			$(this).addClass("selected");
+		
+		var str = "";
+		$("#serviceGroups li > button[class=selected]").each(function(index, item){
+			if(index == 0)
+				str += $(this).attr('data-menuCd');
+			else
+				str += ","+$(this).attr('data-menuCd');
+		});
+		$("#menuCd").val(str);
+		searchSend('cate');
+	});
+	
+	//관련태그
+	$("#tagGroups li > button").on("click", function(){
+		if($(this).hasClass("selected"))
+			$(this).removeClass("selected");
+		else
+			$(this).addClass("selected");
+		
+		var str = "";
+		$("#tagGroups li > button[class=selected]").each(function(index, item){
+			if(index == 0)
+				str += $(this).attr('data-organCd');
+			else
+				str += ","+$(this).attr('data-organCd');
+		});
+		$("#tagNm").val(str);
+		searchSend('cate');
+	});
+	
+	//데이터셋종류 탭클릭시
+	$(".ui-tab-btns > button").on("click", function(){
+		var str = $(this).attr('data-organNm');
+		$("#datasetKind").val(str);
+		searchMoreSend();
+	});
+		
+	
+	//상세보기
+	$("a[class=goView], button[class^='btn-data-']").on("click", function(){
+		var url = $(this).attr("data-rel");
+		var num = $(".paging-num:disabled > span").text();
+		$('#pageIndex').val( num );
+		
+		$('#datasetVO').attr('method', 'post');
+	    $('#datasetVO').attr('action', url);
+	    $('#datasetVO').submit();
+	});
+	
+	setTimeout(popularWord(),1000);	//가끔 안나오는  경우 발생..
+});
+
+
+function detailSend() {
+	$('#searchFlag').val('Y');
+	//$('#basickwd').val($('#resSearchValue').val());
+	searchSend();
+}
+function totalSend() {
+	$('#searchFlag').val('N');
+	searchSend();
+}
+
+//검색
+function searchSend(nw){
+	if($('#resSearch').val() != "Y") $('#resOrgSysYn').val("");
+	
+	// 재검색시
+	//20211118 add
+	if(nw !=null && nw == "total") {		//통합검색일경우 해당 페이지로 이동
+		$('#detailkwd').val('');
+		$('#basickwd').val('');
+		$('#exactkwd').val('');
+		$('#inkwd').val('');
+		$('#notkwd').val('');
+		$('#orgkwd').val('');
+		$('#syskwd').val('');
+		$('#datasetKind').val('');
+		$('#searchValue').val($('input[name=searchKeyword]').val());	//검색후 결과내 재검색 체크후 다른단어로 통합검색
+		searchVO.action = "/dataList/datasetTotalList.do";		
+	} else if(nw == "cate") {
+		$('#searchFlag').val('N');	
+		$('#datasetKind').val('');		
+	} else {
+		$('#datasetKind').val('');
+		searchVO.action = "/dataList/datasetList.do";	
+		if($('#searchFlag').val() == "Y") {						//상세검색이면 
+			$('#basickwd').val($('#basickwdval').val());
+			$('#exactkwd').val($('#exactkwdval').val());
+			$('#inkwd').val($('#inkwdval').val());
+			$('#notkwd').val($('#notkwdval').val());
+			$('#orgkwd').val($('#orgkwdval').val());
+			$('#syskwd').val($('#syskwdval').val());
+			$('#searchValue').val('');
+			
+			if($('#orgkwdval').val() != "" || $('#syskwdval').val() != "") {
+				$('#resOrgSysYn').val("Y");
+			}
+		} else {	
+			if($('#resSearch').val() == "N" && $('input[name=searchKeyword]').val() == "") {
+				$('#resSearchValue').val('');
+			}
+			$('#basickwd').val('');
+			$('#detailkwd').val('');
+			$('#exactkwd').val('');
+			$('#inkwd').val('');
+			$('#notkwd').val('');
+			$('#orgkwd').val('');
+			$('#syskwd').val('');
+			$('#datasetKind').val('');
+			//$('#basickwd').val($('input[name=searchKeyword]').val());
+			$('#searchValue').val($('input[name=searchKeyword]').val());	
+		}
+	}		 
+
+	if(nw == "popular"){			
+		$('#mapId').val('');
+		$('#menuCd').val('');ㅣ
+		$('#organCd').val('');
+		$('#organNm').val('');
+		
+		$('#tagNm').val('');
+		$('#datasetKind').val('');
+		
+		$('#sortColBy').val('R');
+	}
+	
+	//searchVO.action = "/dataList/datasetSearchList.do";
+	searchVO.pageIndex.value=1;
+	searchVO.submit();
+	
+}
+
+//더보기
+function searchMoreSend(nw){
+	if($('#resSearch').val() == 'Y'){
+		if( ( $('#resSearchValue').val() == null || $('#resSearchValue').val() == '' ) && ( $('#resSearchValue').val() !=  $('#searchValue').val()) && ($('#searchValue').val() != "")){
+			$('#resSearchValue').val($('input[name=searchKeyword]').val());
+		}else{
+			$('#searchValue').val('');
+			$('#basickwd').val('');
+			$('#detailkwd').val('');
+			$('#exactkwd').val('');
+			$('#inkwd').val('');
+			$('#notkwd').val('');
+			$('#orgkwd').val('');
+			$('#syskwd').val('');
+		}
+	} else {
+		$('#resSearchValue').val('');		
+	}
+	
+	//20211118 add
+	searchVO.action = "/dataList/datasetList.do";	
+	
+	searchVO.pageIndex.value=1;
+	searchVO.submit();
+}
+
+//공유 페이징
+var fn_board_page = function(pageNo) {	
+	
+	$('#pageIndex').val(pageNo);
+	
+	$('#datasetVO').attr('action', "/dataList/datasetList.do");
+	document.getElementById("datasetVO").submit();
+	
+	return false;
+};
+
+//인기검색어 가져오기
+function popularWord(){
+	var reExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@#$%&\\\=\(\'\"]/gi;
+	$.ajax({
+		type:"post",					
+		url:"/search/popword/popword.jsp",
+		cache: false,
+		dataType: "xml",
+		success:function(xml){
+			console.log(xml);
+			selectHtml="";
+			$(xml).find("Query").each(function(i, item){
+				selectHtml += '<li>';
+				selectHtml += "	<button type=\"button\" onclick=\"popularSend('"+$(this).text().trim().replace(reExp, "")+"');\">";
+				selectHtml += '	<b>'+(i+1)+'.&nbsp;</b>';
+				selectHtml += $(this).text();
+				selectHtml += '	</button>';
+				selectHtml += '</li>';
+				
+				if(i>10){
+					return false;
+				}
+			});
+			$("#tabPopular").html(selectHtml);
+
+		},
+		error      : function(json) {
+			//alert("실패");
+		}
+	});
+
+}
+
+
+//인기검색어 클릭 시 이동
+function popularSend(word){
+	$("#searchKeyword").val(word);
+	searchSend('popular');
+}
+
+
+</script>
+</head>
+
+<body>	
+
+	<div class="base-skip" id="baseSkip"></div>
+
+	<div class="base-layer" id="baseLayer"></div>
+    
+    <div class="base-wrap" id="baseWrap">
+    
+        <!--탑 해더 시작-->
+        <header class="base-header" id="baseHeader">
+			
+<script src="//www.seoul.go.kr/seoulgnb/gnb.js"></script>
+<script>
+function logout(){ 
+	//location.href = "/sso/logout.jsp?nextPage="+encodeURIComponent(location.href);
+	
+	//통계소식, 게시판 상세에서 로그인시 오류 발생 20200213 add
+	var ourl = location.href;
+	//if( ourl.includes("boardView.do") || ourl.includes("inquireView.do") || ourl.includes("galleryView.do") || ourl.includes("statView.do") ) {	//익스에서 먹지않음.
+	if( ourl.indexOf("boardView.do")>=0 || ourl.indexOf("inquireView.do")>=0 || ourl.indexOf("galleryView.do")>=0 || ourl.indexOf("statView.do")>=0 ) {
+		if( ourl.indexOf("?") >= 0) {
+			ourl = ourl.substring(0, ourl.indexOf("?"));			
+		} 
+		ourl = ourl.replace("View", "List");
+	}
+	location.href = "/sso/logout.jsp?nextPage="+encodeURIComponent(ourl);
+}
+
+function login(){
+	//location.href = "/sso/login.jsp?nextPage="+encodeURIComponent(location.href);
+	
+	//통계소식, 게시판 상세에서 로그인시 오류 발생 20200213 add
+	var ourl = location.href;
+	if( ourl.indexOf("boardView.do")>=0 || ourl.indexOf("inquireView.do")>=0 || ourl.indexOf("galleryView.do")>=0 || ourl.indexOf("statView.do")>=0 ) {
+		if( ourl.indexOf("?") >= 0) {
+			ourl = ourl.substring(0, ourl.indexOf("?"));			
+		} 
+		ourl = ourl.replace("View", "List");
+	}
+	location.href = "/sso/login.jsp?nextPage="+encodeURIComponent(ourl);
+}
+function login2(){
+	
+	alert('서울시 통합회원 로그인 홈페이지로\n이동하여 로그인 합니다.');
+	//통계소식, 게시판 상세에서 로그인시 오류 발생 20200213 add
+	var ourl = location.href;
+	if( ourl.indexOf("boardView.do")>=0 || ourl.indexOf("inquireView.do")>=0 || ourl.indexOf("galleryView.do")>=0 || ourl.indexOf("statView.do")>=0 ) {
+		if( ourl.indexOf("?") >= 0) {
+			ourl = ourl.substring(0, ourl.indexOf("?"));			
+		} 
+		ourl = ourl.replace("View", "List");
+	}
+	
+	location.href = "/sso/login2.jsp?nextPage="+encodeURIComponent(ourl);
+}
+
+//GNB 로딩 스크립트
+window.onload = function() {
+	var widthValue = "1000px";
+	
+	if(window.location.href.indexOf('/index.do') > 0 || window.location.pathname == '/') {
+		widthValue = "1200px";
+	}
+	var myCss = {
+		root: {
+			backgroundColor: 'white'
+		},
+		holder: {
+			maxWidth: widthValue
+		},
+		menu: {
+			backgroundColor: 'white'
+		}
+	};
+	Yjs.Gnb.init('G135', 'seoul-common-gnb', myCss);
+}
+
+$(document).ready(function() {
+
+});
+
+function showModal(id){
+	$("#"+id).modal('show');
+	var loc = "#"+id;
+	$(loc).prop("tabindex","0");
+	document.location.href = loc;
+
+// 	$(loc).keyup(function(){
+// 		$(loc).removeAttr("tabindex");
+// 	});
+}
+
+function hideModal(){
+	$(".blocker").trigger("click");
+	var loc = "#sitemap_p";
+	$(loc).prop("tabindex","0");
+	document.location.href = loc;
+
+//	$(loc).keyup(function(){
+//		$(loc).removeAttr("tabindex");
+//	});
+}
+
+function goUrl(param){
+	$.ajax({
+		type:"post",
+		url:"/goUrlLog.do",
+		dataType:"json",
+		data : {toUrl : param},
+		success:function(data){			
+		},
+		error      : function(data) {
+		}
+	});
+	
+	window.open(param, "_blank");
+}
+
+function searchMSend(){
+	datasetMVO.submit();
+}
+
+function fn_memberJoin(){
+	var openNewWindow = window.open("");
+	openNewWindow.location.href = "https://www.seoul.go.kr/member/join/regist01.do?SITE_GB=GB071";
+}
+
+//20210202 add 
+function goLinkedData() {
+	var openNewWindow = window.open("");
+	openNewWindow.location.href = "http://lod.seoul.go.kr/home/";
+}
+
+function movePage(url, popYn){
+	if(popYn == "Y") {
+		window.open(url,"_blank","")
+	} else {
+		document.location.href=url;
+	}
+}
+function confirmYN(){
+	var userId   = '';
+	if(userId==""){
+		if(confirm("참가신청/확인은 서울시 통합회원 로그인이 필요한 서비스입니다.\n이동하시겠습니까?\n(참가신청/확인은 PC 버전 브라우저에서만 가능합니다.)")){
+			location.href="/together/cpthb/cpthbWrite_ss.do";
+		}
+	}else{
+		location.href="/together/cpthb/cpthbWrite_ss.do";
+	}
+}
+</script>
+    
+        	
+	
+<!--탑 해더 시작-->
+<!--상단메뉴1 서울시 공통 GNB-->
+<div class="header-toolbar" style="box-sizing: content-box;">
+    <div class="header-toolbar-wrap" style="padding: 0;">
+        <div id='seoul-common-gnb'></div>
+    </div>
+</div>
+<!--//상단메뉴1 서울시 공통 GNB--> 
+	
+    
+<!-- 상단메뉴2시작 -->
+<div class="header-wrap">
+    <h2 class="header-logo">
+        <a href="/"><img src="/resources/img/common/logo.png" alt="서울열린데이터광장"></a>
+   </h2>
+   <button type="button" class="btn-open only-m" onclick="$plugins.common.menuOpen();"><span class="hide">메뉴 열기</span></button>
+   
+   <nav class="nav-main" id="baseNav">
+       <ul class="nav-main-wrap">
+           <li class="nav-main-1 n1">
+               <a class="nav-btn-1" href="/dataList/datasetList.do?datasetKind=1&searchFlag=M"><i>공공데이터</i></a>
+               <div class="nav-sub">
+                   <div class="nav-sub-wrap">
+                       <h2>공공데이터</h2>
+                       <ul>
+                           <li><a href="/dataList/datasetList.do?datasetKind=1&searchFlag=M">공공데이터</a></li><!-- 20220520 edit -->
+                           <li><a href="/dataList/literacyList.do">인기그룹데이터</a></li>
+                           <li><a href="/datasetRanking/new.do">새로 개방한 데이터</a></li>
+                           <li><a href="/datasetRanking/popular.do">인기데이터</a></li>
+                           <li><a href="//lod.seoul.go.kr/home/" onclick="javascript:goLinkedData();return false;">Linked Open Data</a></li>
+                           <li><a href="/link/districtList.do">자치구 열린데이터</a></li>
+<!--                            <li><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza" target="_blank" title="새창열림">데이터 맵</a></li> -->
+							<li><a href="#" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza');" title="새창열림">데이터 맵</a></li>
+                           <!-- <li><a href="/together/bbs/bbsList.do">공공데이터 제공신청</a></li> -->
+                       </ul>
+                   </div>
+               </div>
+           </li>
+           <li class="nav-main-1 n2">
+               <a class="nav-btn-1" href="/dataList/datasetList.do?datasetKind=2&searchFlag=M"><i>통계</i></a><!-- 20220520 edit -->
+               <div class="nav-sub">
+                   <div class="nav-sub-wrap">
+                       <h2>통계</h2>
+                       <ul>
+                           <li><a href="/dataList/datasetList.do?datasetKind=2&searchFlag=M">통계표</a>
+                           <li><a href="/dataService/boardList.do">통계목록</a></li>
+                           <li><a href="/dataService/statList.do">통계소식</a></li>
+                           <li><a href="/dataVisual/seoul/seoulList.do">서울의하루</a>
+                           <li><a href="/together/statbook/statbookList.do">서울통계간행물</a></li>
+                           <li><a href="/dataVisual/seoul/bestList.do">서울의 인기통계</a></li>
+                           <li><a href="/dataVisual/seoul/seoul100List.do">서울의 100대통계</a></li>
+                           <li><a href="https://stat.eseoul.go.kr/stat/sip/sts/map/statsMap.do" target="_blank">한눈에 보는 사업체</a></li>
+                           <li><a href="https://stat.eseoul.go.kr/stat/sip/sts/move/statsMoveBoard.do" target="_blank">서울시 전출입 인구</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </li>
+           <li class="nav-main-1 n3">
+               <a class="nav-btn-1" href="/dataVisual/seoul/seoulLivingPopulation.do"><i>서울빅데이터</i></a>
+               <div class="nav-sub">
+                   <div class="nav-sub-wrap">
+                       <h2>서울빅데이터</h2>
+                       <ul>
+                           <li><a href="/dataVisual/seoul/seoulLivingPopulation.do">서울 생활인구</a></li>
+                           <li><a href="/dataVisual/seoul/seoulStay.do">서울 체류인구</a></li>
+                           <li><a href="/dataVisual/seoul/capitalRegionLivingMigration.do">수도권 생활이동</a></li>
+		                   <li><a href="/dataVisual/seoul/seoulLiving.do">서울 시민생활 데이터</a></li>
+		                   <li><a href="/dataVisual/seoul/guide.do">서울 실시간 도시데이터</a></li>
+		                   <li><a href="/dataVisual/seoul/SeoulConsumerLogistics.do">서울 생활물류</a></li>
+                           <li><a href="/etc/aiEduData.do">AI학습데이터</a></li>
+<!--                            <li><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza" target="_blank" title="새창열림">서울 데이터 허브</a></li> -->
+                           <li><a href="#" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza');" title="새창열림">서울 데이터 허브</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </li>
+           
+			<li class="nav-main-1 n4">
+				<a class="nav-btn-1" href="/together/notice/datasetNoticeList.do"><i>소식&amp;참여</i></a>
+				<div class="nav-sub">
+					<div class="nav-sub-wrap">
+						<h2>소식&amp;참여</h2>
+						<ul>
+							<li><a href="/together/notice/datasetNoticeList.do">데이터소식</a></li>
+							<li><a href="/together/notice/boardList.do">공지사항</a></li>
+							<li><a href="/together/notice/faqList.do">FAQ</a></li>
+							<li><a href="/together/notice/inquireList.do">문의하기</a></li>
+							<li><a href="/dataVisual/gallery/galleryList.do">활용사례(갤러리)</a></li>
+							<li><a href="/together/bbs/bbsList.do">데이터 수요창구</a></li>
+							<li><a href="/together/newsletter/newsletter.do">열광 뉴스레터</a></li>
+							<li><a href="/together/notice/fellowshipList.do">서울 데이터 펠로우십</a></li>
+							<li><a href="/together/cpthb/cpthbDetail.do">경진대회</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+        			  
+			<li class="nav-main-1 n5">
+			<a class="nav-btn-1" href="/etc/openInfo.do"><i>이용안내</i></a>
+				<div class="nav-sub">
+					<div class="nav-sub-wrap">
+						<h2>이용안내</h2>
+						<ul>
+							<li><a href="/etc/openInfo.do">열광소개</a></li>
+							<li><a href="/together/guide/useGuide.do">Open API 소개</a></li>
+							<li><a href="/etc/offerReqst.do">공공데이터 제공신청</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+
+           <!-- AI학습데이터 추가 -->
+       </ul>
+   </nav>
+   <div class="header-lnb">
+   	
+		
+		
+			<!-- <a href="#" onclick="javascript:login()">로그인 </a> -->
+			<a href="#" onclick="javascript:login2()">로그인</a>
+			<a href="https://www.seoul.go.kr/member/join/regist01.do?SITE_GB=GB071" target="_blank"  title="새창열림">회원가입</a>
+		
+	
+       		<a href="#" onclick="javascript:showModal('sitemap');">사이트맵 </a>
+    </div>
+    
+    <section class="menu-wrap only-m" id="uiMenu">
+        <h2 class="hide">서울데이터광장 menu</h2><!-- 20201104 웹표준관련 -->
+        <button type="button" class="btn-close" onclick="$plugins.common.menuClose();"><span class="hide">메뉴 닫기</span></button>
+        <div class="menu-wrap-head">
+        
+        
+			
+			
+				 <!-- 로그인 전 -->
+		            <div class="state-login">
+		                <button type="button" onclick="login2();">
+		                    <img src="/resources/img/common/btn_login_renewal.png" alt="로그인">
+		                    	로그인
+		                </button>
+		                <button type="button" onclick="fn_memberJoin();">
+		                    <img src="/resources/img/common/btn_join_renewal.png" alt="회원가입">
+		                    	회원가입
+		                </button>
+		            </div>
+			
+		
+            
+        <form id="datasetMVO" name="datasetMVO" method="post" action="/dataList/datasetList.do">
+        	<input type="hidden" name="pageIndex"  id="pageIndex1" value="1" />
+			<input type="hidden" name="sortColBy" id="sortColBy1" value="R"/>
+            <div class="base-search">
+				<div class="base-search-wrap">
+					<label for="searchMKeyword"></label>
+                    <input type="text" name="searchValue" id="searchMKeyword" class="inp-base" placeholder="데이터를 입력해주세요">
+                    <button type="button" onclick="searchMSend();">검색</button>
+                    <label for="baseSearch1"></label>
+                    <input type="checkbox" id="baseSearch1">
+                </div>
+			</div>
+		</form>
+        </div>
+        <nav class="menu-wrap-body">
+
+            <ul class="dep-1-wrap">
+                <li class="dep-1 selected">
+                    <button type="button" class="dep-1-btn">공공데이터</button>
+                    <div class="dep-2-wrap">
+                        <ul>
+                           <li class="dep-2"><a href="/dataList/datasetList.do?datasetKind=1&searchFlag=M" class="dep-2-btn">공공데이터</a></li><!-- 20220520 edit -->
+                           <li class="dep-2"><a href="/dataList/literacyList.do" class="dep-2-btn">인기그룹데이터</a></li>
+                           <li class="dep-2"><a href="/datasetRanking/new.do" class="dep-2-btn">새로 개방한 데이터</a></li>
+                           <li class="dep-2"><a href="/datasetRanking/popular.do" class="dep-2-btn">인기데이터</a></li>
+                           <li class="dep-2"><a href="//lod.seoul.go.kr/home/" onclick="javascript:goLinkedData();return false;" class="dep-2-btn">Linked Open Data</a></li>
+                           <li class="dep-2"><a href="/link/districtList.do" class="dep-2-btn">자치구 열린데이터</a></li>
+<!--                            <li class="dep-2"><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza" target="_blank" class="dep-2-btn" title="새창열림">데이터 맵</a></li> -->
+                           <li class="dep-2"><a href="#" class="dep-2-btn" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza');" title="새창열림">데이터 맵</a></li>
+                           <!-- <li class="dep-2"><a href="/together/bbs/bbsList.do" class="dep-2-btn">공공데이터 제공신청</a></li> -->
+                        </ul>
+                    </div>
+                </li> 
+                <li class="dep-1">
+                    <button type="button" class="dep-1-btn">통계</button>
+                    <div class="dep-2-wrap">
+                        <ul>
+							<li class="dep-2"><a href="/dataList/datasetList.do?datasetKind=2&searchFlag=M" class="dep-2-btn">통계표</a></li>
+							<li class="dep-2"><a href="/dataService/boardList.do" class="dep-2-btn">통계목록</a></li>
+							<li class="dep-2"><a href="/dataService/statList.do" class="dep-2-btn">통계분석</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/seoulList.do" class="dep-2-btn">서울의하루</a></li>
+							<li class="dep-2"><a href="/together/statbook/statbookList.do" class="dep-2-btn">서울통계간행물</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/bestList.do" class="dep-2-btn">서울의 인기통계</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/seoul100List.do" class="dep-2-btn">서울의 100대통계</a></li>
+							<li class="dep-2"><a href="https://stat.eseoul.go.kr/stat/sip/sts/map/statsMap.do" target="_blank" class="dep-2-btn">한눈에 보는 사업체</a></li>
+							<li class="dep-2"><a href="https://stat.eseoul.go.kr/stat/sip/sts/move/statsMoveBoard.do" target="_blank" class="dep-2-btn">서울시 전출입 인구</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+				<li class="dep-1">
+					<button type="button" class="dep-1-btn">서울빅데이터</button>
+					<div class="dep-2-wrap">
+						<ul>
+							<li class="dep-2"><a href="/dataVisual/seoul/seoulLivingPopulation.do" class="dep-2-btn">서울 생활인구</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/seoulStay.do" class="dep-2-btn">서울 체류인구</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/capitalRegionLivingMigration.do" class="dep-2-btn">수도권 생활이동</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/seoulLiving.do" class="dep-2-btn">서울 시민생활 데이터</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/guide.do" class="dep-2-btn">서울 실시간 도시데이터</a></li>
+							<li class="dep-2"><a href="/dataVisual/seoul/SeoulConsumerLogistics.do" class="dep-2-btn">서울 생활물류</a></li>
+							<li class="dep-2"><a href="/etc/aiEduData.do" class="dep-2-btn">AI학습데이터</a></li>
+<!-- 							<li class="dep-2"><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza" target="_blank" class="dep-2-btn" title="새창열림">서울 데이터 허브</a></li> -->
+							<li class="dep-2"><a href="#" class="dep-2-btn" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza');" title="새창열림">서울 데이터 허브</a></li>
+						</ul>
+					</div>
+				</li> 
+				
+				<li class="dep-1">
+					<button type="button" class="dep-1-btn">소식&amp;참여</button>
+					<div class="dep-2-wrap">
+						<ul>
+							<li class="dep-2"><a href="/together/notice/datasetNoticeList.do" class="dep-2-btn">데이터소식</a></li>
+							<li class="dep-2"><a href="/together/notice/boardList.do" class="dep-2-btn">공지사항</a></li>
+							<li class="dep-2"><a href="/together/notice/faqList.do" class="dep-2-btn">FAQ</a></li>
+							<li class="dep-2"><a href="/together/notice/inquireList.do" class="dep-2-btn">문의하기</a></li>
+							<li class="dep-2"><a href="/dataVisual/gallery/galleryList.do" class="dep-2-btn">활용사례(갤러리)</a></li>
+							<li class="dep-2"><a href="/together/bbs/bbsList.do" class="dep-2-btn">데이터 수요창구</a></li>
+							<li class="dep-2"><a href="/together/newsletter/newsletter.do" class="dep-2-btn">열광 뉴스레터</a></li>
+							<li class="dep-2"><a href="/together/notice/fellowshipList.do" class="dep-2-btn">서울 데이터 펠로우십</a></li>
+							<li class="dep-2"><a href="/together/cpthb/cpthbDetail.do" class="dep-2-btn">경진대회</a></li>
+						</ul>
+					</div>
+				</li> 
+				
+				<li class="dep-1">
+					<button type="button" class="dep-1-btn">이용안내</button>
+					<div class="dep-2-wrap">
+						<ul>
+							<li class="dep-2"><a href="/etc/openInfo.do" class="dep-2-btn">열린소개</a></li>
+							<li class="dep-2"><a href="/together/guide/useGuide.do" class="dep-2-btn">Open API 소개</a></li>
+							<li class="dep-2"><a href="https://www.data.go.kr/tcs/dor/insertDataOfferReqstProcssView.do" target="blank" class="dep-2-btn">공공데이터 제공신청</a></li>
+						</ul>
+					</div>
+				</li> 
+                <!-- AI학습데이터 추가 -->
+            </ul>
+        </nav>
+    </section>
+</div>
+<!-- 상단메뉴2끝 -->
+<div class="menu-dim"></div>
+<!-- 탑 해더 끝-->
+	
+		</header>
+        <!-- 탑 해더 끝-->
+        
+        <section class="base-body" id="baseBody">
+        
+		
+			<div class="base-tit">
+				<div class="base-tit-wrap">
+					<h1 class="tit-l">
+					
+						
+						공공데이터
+					
+					</h1>
+					<div class="breadcrumbs">
+						<ul>
+							<li><span>Home</span></li>
+					
+						
+						
+							<li><span>공공데이터</span></li>
+							<li><span>공공데이터</span></li>
+						
+					
+						</ul>
+					</div>
+
+					<button type="button" class="btn-submenu only-m ui-drop" id="uiMeunSub"><span class="hide">서브메뉴 열기</span></button>
+					<div class="ui-drop-wrap menusub-area only-m ">
+						<section class="ui-drop-pnl" data-id="uiMeunSub">
+							<div>
+								<ul>
+								
+									
+									
+										<li class="dep-2"><a href="/dataList/datasetList.do?datasetKind=1" class="dep-2-btn">공공데이터</a></li><!-- 20220520 edit -->
+										<li class="dep-2"><a href="/dataList/literacyList.do" class="dep-2-btn">인기그룹데이터</a></li>
+										<li class="dep-2"><a href="/datasetRanking/new.do" class="dep-2-btn">새로 개방한 데이터</a></li>
+										<li class="dep-2"><a href="/datasetRanking/popular.do" class="dep-2-btn">인기데이터</a></li>
+										<li class="dep-2"><a href="https://lod.seoul.go.kr/home/" onclick="javascript:goLinkedData();return false;" class="dep-2-btn">Linked Open Data</a></li>
+										<li class="dep-2"><a href="/link/districtList.do" class="dep-2-btn">자치구 열린데이터</a></li>
+										<!-- <li class="dep-2"><a href="/together/bbs/bbsList.do" class="dep-2-btn">공공데이터 제공신청</a></li> -->
+									
+								
+								</ul>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			
+			
+		<form name="searchVO" id="datasetVO"  method="post" action="/dataList/datasetList.do">
+			<input type="hidden" name="pageIndex"  id="pageIndex"  />
+			<input type="hidden" name="sortColBy" id="sortColBy" value=""/>
+			<input type="hidden" name="searchValue" id="searchValue" value=""/>
+			<input type="hidden" name="resSearch" id="resSearch" value=''/>
+			<input type="hidden" name="resSearchValue" id="resSearchValue" value=''/><!-- datasetVO.resSearchValue -->
+			<input type="hidden" name="mapId"   id="mapId"  value=""/>
+			<input type="hidden" name="menuCd"  id="menuCd" value=""/>			
+			<input type="hidden" name="organCd"  id="organCd" value=""/>
+			<input type="hidden" name="organNm"  id="organNm" value=""/>			
+			
+			<input type="hidden" name="tagNm" id="tagNm" value=""/>
+			<input type="hidden" name="datasetKind" id="datasetKind" value="1"/>	
+			<input type="hidden" name="searchFlag" 		id="searchFlag" 	value="M"/><!-- 20220531 메뉴에서 넘어올경우 : M, 상세검색 : Y, 검색:N-->
+			
+			<input type="hidden" name="basickwd" 		id="basickwd" 	value=""/>
+			<input type="hidden" name="exactkwd" 		id="exactkwd" 	value=""/>
+			<input type="hidden" name="inkwd" 			id="inkwd" 		value=""/>
+			<input type="hidden" name="notkwd" 			id="notkwd" 	value=""/>
+			<input type="hidden" name="orgkwd" 			id="orgkwd" 	value=""/>
+			<input type="hidden" name="syskwd" 			id="syskwd" 	value=""/>
+			<input type="hidden" name="detailkwd" 		id="detailkwd" 	value=""/>
+			
+			<input type="hidden" name="resSearchBbs" 	id="resSearchBbs" 	value=''/> <!-- 20220713 -->
+			<input type="hidden" name="resSearchMenu" 	id="resSearchMenu" 	value=''/> <!-- 20220713 -->
+			<input type="hidden" name="resDetailkwd" 	id="resDetailkwd" 	value=""/><!-- 20220726 -->
+			
+			<input type="hidden" name="resOrgSysYn" 	id="resOrgSysYn" 	value=""/><!-- 20220801 재검색중 제공기관, 원본시스템 검색 여부 -->
+			<div class="base-search renewal">
+				<div class="base-search-wrap">
+					<label for="searchKeyword"></label>
+					<input type="text" class="inp-base" name="searchKeyword" id="searchKeyword" 
+					
+																			
+						
+							placeholder='찾고 싶은 데이터를 입력해 주세요.'
+						
+					 onfocus="this.placeholder=''" title="공공데이터 검색" />
+					<button type="button" onclick="totalSend()" title="공공데이터 검색" class="btn-ico">데이터 검색</button>
+					<button type="button"  title="상세 검색"  id="detailSearch" class="detailSearch button_new">상세 검색</button>	
+					<div class="detail-search-layer">
+						<!--<label for="detailKeyword"></label>
+						<input type="text" name="detailKeyword" id="detailKeyword" class="inp-base" disabled>-->
+						<dl>
+							<dt><label for="basickwdval">기본 검색어</label></dt>
+							<dd><input type="text" name="basickwdval" id="basickwdval" class="inp-base" placeholder="예) 미세먼지"  onfocus="this.placeholder=''"></dd>
+						</dl>
+						<dl>
+							<dt><label for="inkwdval">반드시 포함하는 단어 (+)</label></dt>
+							<dd><input type="text" name="inkwdval" id="inkwdval" class="inp-base" placeholder="예) 초미세먼지"  onfocus="this.placeholder=''"></dd>
+						</dl>
+						<dl>
+							<dt><label for="notkwdval">제외하는 단어 (-)</label></dt>
+							<dd><input type="text" name="notkwdval" id="notkwdval" class="inp-base" placeholder="예) 이산화탄소"  onfocus="this.placeholder=''"></dd>
+						</dl>
+						<dl>
+							<dt><label for="orgkwdval">제공기관</label></dt>
+							<dd><input type="text" name="orgkwdval" id="orgkwdval" class="inp-base" placeholder="예) 서울특별시"  onfocus="this.placeholder=''"></dd>
+						</dl>
+						<dl>
+							<dt><label for="syskwdval">원본시스템</label></dt>
+							<dd><input type="text" name="syskwdval" id="syskwdval" class="inp-base" placeholder="예) 기후대기환경정보 서비스"  onfocus="this.placeholder=''"></dd>
+						</dl>
+						<p class="text01">* 여러 개의 단어를 입력할 때는 쉼표(,)로 구분해서 입력하세요.</p>
+						<div  class="btn-area">
+							<button type="button" class="btn-base" onclick="detailSend()">검색</button>
+							<button type="button" class="btn-base layer-close">닫기</button>
+							<button type="button" class="btn-base layer-close2">초기화</button>
+						</div>
+					</div>
+					<button type="button"  title="통합 검색" class="btn-total-search" onclick="searchSend('total')">통합 검색</button>	
+					
+					<div class="result-research">
+						<input type="checkbox" id="searchChk" name="searchChk"   >                    
+						<label for="searchChk" class="lb-check">결과 내 재검색</label>
+					</div>
+
+					<div id="autocomplete" class="search-frame" style="display:none;">
+						<div id="auto"></div>
+						<div id="words"></div>
+					</div>					
+				</div>
+			</div>
+			
+			<div class="wrap-a">
+				<div class="wrap-cont">
+					<section class="main-content">
+						
+						<div class="search-result renewal">
+							
+							
+							
+								
+										
+										
+									
+																	
+							
+							
+								
+										
+																						
+									
+									
+																	
+							
+							
+						
+							
+							
+								<!-- <p>전체&nbsp;<strong>6,480</strong>건을 찾았습니다. </p>-->
+								
+								<div class="search-count-text">
+									
+																										
+										
+											
+												
+													<p style="margin-bottom: 20px; width: 590px;float:left;">전체 검색결과&nbsp;<strong>6,479</strong>건을 찾았습니다. </p>
+												
+												
+												
+												 		
+											
+														
+									<a onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?tab=portal');" href="#" class="btn-base btn-link btn-map" style="float:right; cursor: pointer;"><span title="데이터 맵 보기">데이터 맵 보기</span></a>		
+								</div>
+	
+								<div class="ui-tab type-tablage">
+									<div class="ui-tab-btns">
+										<button type="button" class="ui-tab-btn " data-organNm="">
+											<i>전체</i><span>(8258)</span>
+										</button>
+										<button type="button" class="ui-tab-btn active selected" data-organNm="1">
+											<i>공공데이터</i><span>(6479)</span>
+										</button>
+										<button type="button" class="ui-tab-btn " data-organNm="2">
+											<i>통계</i><span>(1779)</span>
+										</button>
+									</div>
+								</div>
+							
+						
+							
+							<div style="float: right;">
+								<select title="검색 정렬" id="sortColByCheck">
+									<option value="R"  >정확도순</option>
+									<option value="B"  >최신공개일순</option>
+									<option value="E"  >조회순</option>
+									<option value="A"  >제목순</option>
+									<option value="D"  >다운로드순</option>
+									<option value="K"  >최신수정일순</option>
+								</select>
+								
+								<button type="button" id="btSortColBy" class="btn-base" title="정렬구분별 조회"><span>조회</span></button>
+							</div>
+						</div>
+						<div class="list-statistics">
+						
+						
+						
+						
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+								
+								
+								
+									
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-4">[산업/경제]</em>
+									<a href="#" data-rel="OA-13648/S/1/datasetView.do" class="goView">
+										<strong>서울시 대부업체 정보&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                서울시에 등록된 대부업 및 대부중개업으로 등록된 업체 정보로 상호, 사업장 소재, 운영여부, 연락처...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										노동공정상생정책관 공정경제담당관
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-13648/S/1/datasetView.do?tab=S" title="서울시 대부업체 정보 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-13648/S/1/datasetView.do?tab=A" title="서울시 대부업체 정보 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+								
+								
+								
+								
+										
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-5">[복지]</em>
+									<a href="#" data-rel="OA-15739/S/1/datasetView.do" class="goView">
+										<strong>서울글로벌센터 접수유형 및 상담유형별(월) 상담실적&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                
+		                                서울글로벌센터의 접수유형 및 상담유형별(월)로 제공합니다. 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										경제실 경제일자리기획관 금융투자과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-15739/S/1/datasetView.do?tab=S" title="서울글로벌센터 접수유형 및 상담유형별(월) 상담실적 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-15739/S/1/datasetView.do?tab=A" title="서울글로벌센터 접수유형 및 상담유형별(월) 상담실적 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-20879/S/1/datasetView.do" class="goView">
+										<strong>서울시 기타 위생용품 제조업 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                서울특별시 내 위생용품 제조업 현황입니다.* 시군구코드명은 &#034;서울특별시 자치구 기관코드&#034; 데이터셋에...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										시민건강국 보건의료정책과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-20879/S/1/datasetView.do?tab=S" title="서울시 기타 위생용품 제조업 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-20879/S/1/datasetView.do?tab=A" title="서울시 기타 위생용품 제조업 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+								
+								
+								
+									
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-4">[산업/경제]</em>
+									<a href="#" data-rel="OA-13555/S/1/datasetView.do" class="goView">
+										<strong>서울시 노동조합 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                서울시에 등록된 노동조합 정보로 각 노동조합의 인허가번호와 민원구분을 비롯하여 노동조합 단체명, 사...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										민생노동국 노동정책과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-13555/S/1/datasetView.do?tab=S" title="서울시 노동조합 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-13555/S/1/datasetView.do?tab=A" title="서울시 노동조합 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+                           			<button type="button" class="btn-data-5" data-rel="OA-13555/S/1/datasetView.do?tab=F" title="서울시 노동조합 현황 FILE 상세이동">FILE</button>
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-20880/S/1/datasetView.do" class="goView">
+										<strong>서울시 위생처리업 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                서울특별시 위생처리업 현황입니다.&lt;br&gt;* 시군구코드명은 &#034;서울특별시 자치구 기관코드&#034; 데이터셋에서...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										디지털도시국 데이터전략과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-20880/S/1/datasetView.do?tab=S" title="서울시 위생처리업 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-20880/S/1/datasetView.do?tab=A" title="서울시 위생처리업 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-10184/S/1/datasetView.do" class="goView">
+										<strong>서울시 중구 위생처리업 공중위생업소 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                이.미용,숙박업,목욕업 등 업소별 신고 현황&lt;br&gt;* 시군구코드명은 &#034;서울특별시 자치구 기관코드&#034; ...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										디지털도시국 정보시스템과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-10184/S/1/datasetView.do?tab=S" title="서울시 중구 위생처리업 공중위생업소 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-10184/S/1/datasetView.do?tab=A" title="서울시 중구 위생처리업 공중위생업소 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-20882/S/1/datasetView.do" class="goView">
+										<strong>서울시 세척제 제조업 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                서울특별시 소재 세척제 제조업 현황입니다.&lt;br&gt;* 시군구코드명은 &#034;서울특별시 자치구 기관코드&#034; 데...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										디지털도시국 데이터전략과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-20882/S/1/datasetView.do?tab=S" title="서울시 세척제 제조업 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-20882/S/1/datasetView.do?tab=A" title="서울시 세척제 제조업 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-13656/S/1/datasetView.do" class="goView">
+										<strong>서울시 식품위생업소 (층) 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                식품접객업소 및 제조,판매업소 층별 업소현황&lt;br&gt;* 시군구코드명은 &#034;서울특별시 자치구 기관코드&#034; ...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										디지털도시국 데이터전략과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-13656/S/1/datasetView.do?tab=S" title="서울시 식품위생업소 (층) 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-13656/S/1/datasetView.do?tab=A" title="서울시 식품위생업소 (층) 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+										
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-1">[보건]</em>
+									<a href="#" data-rel="OA-13663/S/1/datasetView.do" class="goView">
+										<strong>서울시 식품위생업소 현황&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                식품접객업소 및 제조,판매업소 업소별 신고현황
+※FILE탭의 파일을 다운로드하시면, 더욱 빠르게 다...
+		                                 
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										디지털도시국 데이터전략과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-13663/S/1/datasetView.do?tab=S" title="서울시 식품위생업소 현황 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-13663/S/1/datasetView.do?tab=A" title="서울시 식품위생업소 현황 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+                           			<button type="button" class="btn-data-5" data-rel="OA-13663/S/1/datasetView.do?tab=F" title="서울시 식품위생업소 현황 FILE 상세이동">FILE</button>
+								
+								
+								
+								</dd>
+							</dl>
+						
+							
+							
+							
+			
+							                            
+							    
+							    
+							    
+							                                           	
+							 
+							
+								
+								
+								
+								
+										
+								
+								
+								
+								
+								
+								
+								
+								
+							
+							
+										
+								
+								
+								
+								
+								
+								
+								
+							
+							 
+							<dl class="type-b">
+								<dt>
+									
+												
+											
+										
+										
+									
+									
+										
+										
+											<em class="stat-ctg"><span>공공데이터</span></em>
+										
+									
+									
+									
+																		
+									<em class="stat-class-5">[복지]</em>
+									<a href="#" data-rel="OA-15735/S/1/datasetView.do" class="goView">
+										<strong>서울글로벌센터 상담유형별(월) 상담실적&nbsp;<img src="../../resources/img/common/icon_Update.png" alt="업데이트"></strong>
+									</a>
+									
+								</dt>
+								<dd class="list-statistics-info1">									
+	                                
+		                                
+		                                서울글로벌센터의 상담유형별(월) 상담실적을 제공합니다.  
+		                            		                            
+								</dd>
+								<dd class="list-statistics-info2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; word-wrap: normal; display: flex;">
+									<span>
+										<b>수정일자 :</b>&nbsp;
+		                                2026-07-28 
+	                                </span>
+	                                
+                                                              
+									<span style="display: initial;">
+										<b>제공기관 :</b>&nbsp;
+										
+			                                
+			                                서울특별시 
+			                            
+		                            </span>
+									<span style="width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;">
+										<b>제공부서 :</b>&nbsp;
+										경제실 경제일자리기획관 금융투자과
+		                            </span>
+								</dd>
+								<dd class="list-statistics-info3">
+																	
+									<button type="button" class="btn-data-1" data-rel="OA-15735/S/1/datasetView.do?tab=S" title="서울글로벌센터 상담유형별(월) 상담실적 SHEET 상세이동">SHEET</button>
+								
+								
+									<button type="button" class="btn-data-2" data-rel="OA-15735/S/1/datasetView.do?tab=A" title="서울글로벌센터 상담유형별(월) 상담실적 OpenAPI 상세이동">OpenAPI</button>
+								
+								
+								
+								
+								
+								
+								</dd>
+							</dl>
+						
+
+			
+			
+							<div class="paging">
+								<div class="paging-wrap">
+									<button type="button" class="paging-first" onclick="fn_board_page(1); return false;"><span class="hide">처음으로 이동</span></button><button type="button" class="paging-prev" onclick="fn_board_page(1); return false;"><span class="hide">이전</span></button><button type="button" class="paging-num selected" disabled><span>1</span></button><button type="button" class="paging-num" onclick="fn_board_page(2); return false;"><span>2</span></button><button type="button" class="paging-num" onclick="fn_board_page(3); return false;"><span>3</span></button><button type="button" class="paging-num" onclick="fn_board_page(4); return false;"><span>4</span></button><button type="button" class="paging-num" onclick="fn_board_page(5); return false;"><span>5</span></button><button type="button" class="paging-num" onclick="fn_board_page(6); return false;"><span>6</span></button><button type="button" class="paging-num" onclick="fn_board_page(7); return false;"><span>7</span></button><button type="button" class="paging-num" onclick="fn_board_page(8); return false;"><span>8</span></button><button type="button" class="paging-num" onclick="fn_board_page(9); return false;"><span>9</span></button><button type="button" class="paging-num" onclick="fn_board_page(10); return false;"><span>10</span></button><button type="button" class="paging-next" onclick="fn_board_page(11); return false;"><span class="hide">다음</span></button><button type="button" class="paging-last" onclick="fn_board_page(648); return false;"><span class="hide">끝으로 이동</span></button>
+
+								</div>
+							</div>
+						
+						
+			
+						</div>
+
+						
+					</section>
+					<aside class="side-base">
+						<dl class="side-box">
+							<dt class="side-box-tit">
+								<b>카테고리</b>
+								
+								<button type="button" class="btn-base-s bgc-p1"><span title="카테고리 더보기">더보기</span></button>
+								
+							</dt>
+							<dd>
+								<ul id="categoryGroups">
+								
+								
+												
+								
+									<li  >
+										<button type="button"  data-mapId="보건">보건&nbsp;
+										<span>(1630)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"  data-mapId="문화/관광">문화/관광&nbsp;
+										<span>(1564)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"  data-mapId="산업/경제">산업/경제&nbsp;
+										<span>(663)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"  data-mapId="환경">환경&nbsp;
+										<span>(541)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"  data-mapId="교육">교육&nbsp;
+										<span>(538)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="교통">교통&nbsp;
+										<span>(500)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="일반행정">일반행정&nbsp;
+										<span>(412)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="복지">복지&nbsp;
+										<span>(220)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="도시관리">도시관리&nbsp;
+										<span>(180)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="안전">안전&nbsp;
+										<span>(130)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"  data-mapId="주택/건설">주택/건설&nbsp;
+										<span>(101)</span></button>
+									</li>
+								
+								
+								
+								</ul>
+							</dd>
+						</dl>
+						<dl class="side-box">
+							<dt class="side-box-tit">
+								<b>제공유형</b>
+								
+								<button type="button" class="btn-base-s bgc-p1"><span title="제공유형 더보기">더보기</span></button>
+								
+							</dt>
+							<dd>
+								<ul id="serviceGroups">
+								
+								
+												
+								
+									
+										
+											
+										
+										
+										
+										
+										
+										
+									<li  >
+										<button type="button"  data-menuCd="OPENAPI">OPENAPI&nbsp;
+										<span>(5622)</span></button>
+									</li>
+								
+									
+											
+										
+										
+										
+										
+										
+										
+										
+									<li  >
+										<button type="button"  data-menuCd="SHEET">SHEET&nbsp;
+										<span>(5544)</span></button>
+									</li>
+								
+									
+										
+										
+										
+												
+										
+										
+										
+										
+									<li  >
+										<button type="button"  data-menuCd="FILE">FILE&nbsp;
+										<span>(1177)</span></button>
+									</li>
+								
+									
+										
+										
+										
+										
+										
+										
+												
+										
+									<li  >
+										<button type="button"  data-menuCd="LINK">LINK&nbsp;
+										<span>(334)</span></button>
+									</li>
+								
+									
+										
+										
+										
+										
+												
+										
+										
+										
+									<li  >
+										<button type="button"  data-menuCd="MAP">MAP&nbsp;
+										<span>(124)</span></button>
+									</li>
+								
+									
+										
+										
+											
+										
+										
+										
+										
+										
+									<li style="display: none;" >
+										<button type="button"  data-menuCd="CHART">CHART&nbsp;
+										<span>(104)</span></button>
+									</li>
+								
+									
+										
+										
+										
+										
+										
+												
+										
+										
+									<li style="display: none;" >
+										<button type="button"  data-menuCd="LOD">LOD&nbsp;
+										<span>(91)</span></button>
+									</li>
+								
+								
+								
+								</ul>
+							</dd>
+						</dl>
+						<dl class="side-box">
+							<dt class="side-box-tit">
+								<b>관련태그</b>
+								
+								<button type="button" class="btn-base-s bgc-p1"><span title="관련태그 더보기">더보기</span></button>
+								
+							</dt>
+							<dd>
+								<ul id="tagGroups">
+								
+								
+												
+								
+									<li  >
+										<button type="button"     data-organCd="학교">학교&nbsp;
+										<span>(429)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"     data-organCd="위생">위생&nbsp;
+										<span>(384)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"     data-organCd="유치원">유치원&nbsp;
+										<span>(341)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"     data-organCd="유아">유아&nbsp;
+										<span>(338)</span></button>
+									</li>
+								
+									<li  >
+										<button type="button"     data-organCd="식품">식품&nbsp;
+										<span>(319)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"     data-organCd="판매">판매&nbsp;
+										<span>(293)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"     data-organCd="인허가">인허가&nbsp;
+										<span>(245)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"     data-organCd="업소">업소&nbsp;
+										<span>(227)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"     data-organCd="의료">의료&nbsp;
+										<span>(216)</span></button>
+									</li>
+								
+									<li style="display: none;" >
+										<button type="button"     data-organCd="공중">공중&nbsp;
+										<span>(210)</span></button>
+									</li>
+								
+								
+								
+								</ul>
+							</dd>
+						</dl>
+						<dl class="side-box">
+							<dt class="side-box-tit">
+								<b>인기검색어</b>
+							</dt>
+							<dd>
+								<ol class="list-rank" id="tabPopular"></ol>
+							</dd>
+						</dl>
+					</aside>
+
+				</div>
+			</div>
+			
+		</form>
+			
+			<footer class="base-footer" id="baseFooter">
+				
+    
+
+	<div class="footer-wrap">
+	    <div class="footer-link">
+	        <div class="footer-link-wrap">
+	            <a href="/etc/openInfo.do" title="열린데이터광장소개 이동">열린데이터광장소개</a>
+	            <a href="/etc/openPrivacy.do">개인정보처리방침</a>
+	            <a href="/etc/accessTerms.do">이용약관</a>
+	            <a href="http://www.seoul.go.kr/helper/email.do" target="_blank" title="새창 열림">이메일무단수집거부</a>
+	            <a href="http://www.seoul.go.kr/homepageCorrect/user/hpCorrect.do" target="_blank" title="새창 열림">홈페이지바로잡기</a>
+	        </div>
+	    </div>
+	
+	    <div class="footer-info">
+	        <dl>
+	            <dt><span class="hide">동행·매력 특별시 서울</span></dt>
+	            <dd>
+	                <address>
+	                    <span>서울특별시청 04524 서울특별시 중구 세종대로 110</span>
+	                    <!-- <span>전화번호 02-120 | 대표전화 02-2133-4283, 4279, 4282 | 빅데이터담당관(서소문청사)</span> -->
+	                    <span>전화번호 <a href="tel:02-120">02-120</a> | 대표전화 <a href="tel:02-2133-1271">02-2133-1271</a> | 데이터전략과(서소문청사)</span>
+	                    <span>ⓒ 2012-2026. Seoul Metropolitan Government Some Rights Reserved.</span>
+	                </address>
+	            </dd>
+	            <dd>
+	            	<label for="Slink1"></label>
+	                <select title="관련사이트" id="Slink1">
+	                    <option value="">관련사이트</option>
+	                    <option value="http://seoul.go.kr/">서울시 홈페이지</option>
+	                    <option value="https://bigdata.seoul.go.kr/">빅데이터 캠퍼스</option>
+	                    <option value="http://opengov.seoul.go.kr/">정보소통광장</option>
+	                    <option value="http://kosis.kr/index/index.do">국가통계포털</option>
+	                    <option value="https://sgis.kostat.go.kr/view/map/policyStaticMap">정책통계지도</option>
+	                    <option value="https://narastat.kr/metasvc/index.do">통계설명자료</option>
+	                    <option value="https://data.go.kr/">공공데이터포털</option>	                    
+	                    <option value="https://data.seoul.go.kr/bsp">서울 데이터 허브</option>
+	                </select>
+	                <button type="button" id="btnSlink1" title="새창열림"><span>이동</span></button>
+	            </dd>
+	        </dl>
+	    </div>
+	</div>
+	
+	<script>
+	$(function(){
+		// 관련사이트 링크 버튼
+		$('#btnSlink1').click(function(){
+			if($('#Slink1 option:selected').val() != "")
+				var url = $('#Slink1 option:selected').val();
+				window.open(url, '_blank');
+		});
+	});
+	</script>
+   				
+    
+<script src="/js/common.js?ver=20180713"></script>	
+<script src="/js/feCommon-UIACC_min.js"></script> 
+
+<!-- 로거 -->
+<script src="//weblog.eseoul.go.kr/wlo/js/install.js"></script>
+
+<!--
+<script src="//wcs.naver.net/wcslog.js"></script>
+<script>
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "63fee380286b50";
+	wcs_do();
+</script> 
+-->
+
+
+			</footer>
+			
+		</section>
+
+	</div>
+	<script>
+		$(function(){
+			// 관련사이트 링크 버튼
+			$('#btnSlink1').click(function(){
+				if($('#Slink1 option:selected').val() != "")
+					var url = $('#Slink1 option:selected').val();
+					window.open(url, '_blank');
+			});
+
+			//상세검색
+			$("#detailSearch").click(function(){
+				$(".detail-search-layer").toggle();
+				$('#searchFlag').val('Y');
+			});
+
+			$(".layer-close").on("click", function(){
+				$(".detail-search-layer").hide();
+				$('#searchFlag').val('N');
+			});
+			
+			$(".layer-close2").on("click focusout", function(){
+				$('#basickwdval').val('');
+   				$('#exactkwdval').val('');
+   				$('#inkwdval').val('');
+   				$('#notkwdval').val('');
+   				$('#orgkwdval').val('');
+   				$('#syskwdval').val('');
+			});
+			
+			$('body').on('click', function(event) {
+	    		if($(event.target).parents('.base-search').length === 0) {
+	   				$('.detail-search-layer').hide();
+	   				$('#basickwdval').val('');
+	   				$('#exactkwdval').val('');
+	   				$('#inkwdval').val('');
+	   				$('#notkwdval').val('');
+	   				$('#orgkwdval').val('');
+	   				$('#syskwdval').val('');
+	    		}
+	    	});
+			
+		});
+	</script>
+	<script>
+        (function($, win, doc, undefined) {
+            $(doc).ready(function(){
+
+				//필수실행
+                $plugins.common.init();	
+
+            });
+        })(jQuery, window, document);
+	</script>
+
+	
+
+
+<!-- 사이트맵 -->
+<section class="modal type-sitemap" id="sitemap" role="dialog" aria-hidden="true">
+    <div class="ui-modal-wrap">
+        <header class="ui-modal-header">
+            <h2 class="ui-modal-tit"><span>서울 열린데이터광장</span></h2>
+        </header>
+        <div class="ui-modal-cont">
+            <ul class="sitemap-wrap">
+                <li class="sitemap-item n1">
+                    <h3>공공데이터</h3>
+                    <ul>
+                        <li><a href="/dataList/datasetList.do?datasetKind=1&searchFlag=M">공공데이터</a></li><!-- 20220520 edit -->
+                        <li><a href="/dataList/literacyList.do">인기그룹데이터</a></li>
+                        <li><a href="/datasetRanking/new.do">새로 개방한 데이터</a></li>
+                        <li><a href="/datasetRanking/popular.do">인기데이터</a></li>
+                        <li><a href="https://lod.seoul.go.kr/home/" onclick="javascript:goLinkedData();return false;">Linked Open Data</a></li>
+                        <li><a href="/link/districtList.do">자치구 열린데이터</a></li>
+<!--                         <li><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza" target="_blank" title="새창열림">데이터 맵</a></li> -->
+                        <li><a href="#" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/intro/datamap.do?utm_source=opendataplaza&utm_medium=gnbDataMap&utm_campaign=opendataplaza');" title="새창열림">데이터 맵</a></li>
+                        <!-- <li><a href="/together/bbs/bbsList.do">공공데이터 제공신청</a></li> -->
+                    </ul>
+                </li>
+                <li class="sitemap-item n2">
+                    <h3>통계</h3>
+                    <ul>
+                        <li><a href="/dataList/datasetList.do?datasetKind=2&searchFlag=M">통계표</a>
+                        <li><a href="/dataService/boardList.do">통계목록</a></li>
+                        <li><a href="/dataService/statList.do">통계소식</a></li>
+                        <li><a href="/dataVisual/seoul/seoulList.do">서울의하루</a>
+                        <li><a href="/together/statbook/statbookList.do">서울통계간행물</a></li>
+                        <li><a href="/dataVisual/seoul/bestList.do">서울의 인기통계</a></li>
+                        <li><a href="/dataVisual/seoul/seoul100List.do">서울의 100대통계</a></li>
+                        <li><a href="https://stat.eseoul.go.kr/stat/sip/sts/map/statsMap.do" target="_blank">한눈에 보는 사업체</a></li>
+                        <li><a href="https://stat.eseoul.go.kr/stat/sip/sts/move/statsMoveBoard.do" target="_blank">서울시 전출입 인구</a></li>
+                    </ul>
+                </li>
+                <li class="sitemap-item n3">
+                    <h3>서울빅데이터</h3>
+                    <ul>
+                        <li><a href="/dataVisual/seoul/seoulLivingPopulation.do">서울 생활인구</a></li>
+                        <li><a href="/dataVisual/seoul/seoulStay.do">서울 체류인구</a></li>
+                        <li><a href="/dataVisual/seoul/capitalRegionLivingMigration.do">수도권 생활이동</a></li>
+                        <li><a href="/dataVisual/seoul/seoulLiving.do">서울 시민생활 데이터</a></li>
+                        <li><a href="/dataVisual/seoul/guide.do">서울 실시간 도시데이터</a></li>
+                        <li><a href="/dataVisual/seoul/SeoulConsumerLogistics.do">서울 생활물류</a></li>
+                        <li><a href="/etc/aiEduData.do">AI학습데이터</a></li>
+<!--                         <li><a href="/goUrlLog.do?toUrl=https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza" target="_blank" title="새창열림">서울 데이터 허브</a></li> -->
+						<li><a href="#" onclick="javascript:goUrl('https://data.seoul.go.kr/bsp/wgs/index.do?utm_source=opendataplaza&utm_medium=gnbSeoulDataHub&utm_campaign=opendataplaza');" title="새창열림">서울 데이터 허브</a></li>
+                    </ul>
+                </li>
+                <li class="sitemap-item n4">
+                    <h3>소식&amp;참여</h3>
+					<ul>
+						<li><a href="/together/notice/datasetNoticeList.do">데이터소식</a></li>
+						<li><a href="/together/notice/boardList.do">공지사항</a></li>
+						<li><a href="/together/notice/faqList.do">FAQ</a></li>
+						<li><a href="/together/notice/inquireList.do">문의하기</a></li>
+						<li><a href="/dataVisual/gallery/galleryList.do">활용사례(갤러리)</a></li>
+						<li><a href="/together/bbs/bbsList.do">데이터 수요창구</a></li>
+						<li><a href="/together/newsletter/newsletter.do">열광 뉴스레터</a></li>
+						<li><a href="/together/notice/fellowshipList.do">서울 데이터 펠로우쉽</a></li>
+						<li><a href="/together/cpthb/cpthbDetail.do">경진대회</a></li>
+					</ul>
+                </li>
+                <li class="sitemap-item n5">
+                    <h3>이용안내</h3>
+					<ul>
+						<li><a href="/etc/openInfo.do">열광소개</a></li>
+						<li><a href="/together/guide/useGuide.do">Open API 소개</a></li>
+						<li><a href="/etc/offerReqst.do">공공데이터 제공신청</a></li>
+					</ul>
+                </li>
+                <!-- 
+                 <li class="sitemap-item n5" style="margin-top: -50px; ">
+                    <h3 style="margin-top:30px;">나의화면</h3>
+                    <ul>
+                        <li><a href="/together/mypage/actkeyMain.do">인증키 신청</a></li>
+                        <li><a href="/together/mypage/actkeyMng_ss.do">인증키 관리</a></li>
+                        <li><a href="/together/mypage/myQnaList_ss.do">문의 관리</a></li>
+                        <li><a href="/together/mypage/galleryMng_ss.do">갤러리 관리</a></li>
+                    </ul>
+                </li>
+                 -->
+            </ul>
+        </div>
+		<a href="#" onclick="javascript:hideModal('sitemap');" class="ui-modal-close btn-txtclose" >메뉴 닫기</a>
+    </div>
+</section>
+
+</body>
+</html>	

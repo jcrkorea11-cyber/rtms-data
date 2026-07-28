@@ -1,15 +1,19 @@
-=== run 30358685673 2026-07-28T12:22:59Z ===
-== 서울 OA-15389 정찰 ==
-  페이지 저장 (103466자)
-  [AJAX] https://data.seoul.go.kr/dataList/selectDataSetView.do?infId 예외: <HTTPError 404: '404'>
-  [AJAX] https://data.seoul.go.kr/dataService/selectInfoView.do?infId 예외: <HTTPError 404: '404'>
-  [AJAX] https://data.seoul.go.kr/dataList/openApiView.do?infId=OA-15 예외: <HTTPError 404: '404'>
-== 온비드 가이드 정찰 ==
-  검색결과 데이터셋 ID: ['15157207', '15157218', '15157220', '15157222', '15157247', '15157251']
-  [15157207] 한국자산관리공사_차세대 온비드 부동산 물건목록 조회서비스 | 공공데이터포털
-    파일링크 0개, atchFileId []
-  [15157218] 한국자산관리공사_차세대 온비드 공고상세 조회서비스 | 공공데이터포털
-    파일링크 0개, atchFileId []
-  [15157220] 한국자산관리공사_차세대 온비드 공고상세 물건정보 조회서비스 | 공공데이터포털
-    파일링크 0개, atchFileId []
-정찰 완료
+=== run 30358850796 2026-07-28T12:25:06Z ===
+== 서울 검색 ==
+  [건축물대장 표제부] len=84651 OA목록=['OA-10184', 'OA-13555', 'OA-13648', 'OA-13656', 'OA-13663', 'OA-15735', 'OA-15739', 'OA-20879', 'OA-20880', 'OA-20882']
+  [OA-10184/A] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-10184/S] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13555/A] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13555/S] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13648/A] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13648/S] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13656/A] 제목=서울 열린데이터광장 서비스명후보=['value']
+  [OA-13656/S] 제목=서울 열린데이터광장 서비스명후보=['value']
+== 온비드 15157207 ==
+  저장 len=194391
+  패턴 atchFileId[^"\']{0: ['atchFileId, jsonObj.fileDetailSn, jsonObj.dataSetF']
+  패턴 fileDetailSn[^"\']: ['fileDetailSn, jsonObj.dataSetFil']
+  패턴 /tcs/dss/[^"\']{5,: ['/tcs/dss/addApiLinkPrcuse.do', '/tcs/dss/personalRecommendData.json', '/tcs/dss/recommendDataList.do', '/tcs/dss/redirectDevAcountRequestForm.do?publicDataPk=', '/tcs/dss/saveAttention.do', '/tcs/dss/saveEvaluationOpinion.do', '/tcs/dss/saveHate.do', '/tcs/dss/saveLike.do']
+  패턴 swagger[^"\']{0,60: ['swagger', 'swagger guide1', 'swagger guide2', 'swagger guide3', 'swagger guide4', 'swagger guide5', 'swagger guide6', 'swagger guide7']
+  패턴 getRlst[A-Za-z0-9]: ['getRlstCltrList', 'getRlstCltrList2']
+정찰2 완료
