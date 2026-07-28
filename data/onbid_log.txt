@@ -1,4 +1,4 @@
-=== run 30263962811 2026-07-27T11:58:08Z ===
+=== run 30341103206 2026-07-28T08:07:36Z ===
 == 명세 탐색 ==
   [명세 swagger.json] 예외: <HTTPError 404: 'Not Found'>
   [명세 openapi.json] 예외: <HTTPError 404: 'Not Found'>
