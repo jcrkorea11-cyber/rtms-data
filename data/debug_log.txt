@@ -1,0 +1,15 @@
+=== run 30358685673 2026-07-28T12:22:59Z ===
+== 서울 OA-15389 정찰 ==
+  페이지 저장 (103466자)
+  [AJAX] https://data.seoul.go.kr/dataList/selectDataSetView.do?infId 예외: <HTTPError 404: '404'>
+  [AJAX] https://data.seoul.go.kr/dataService/selectInfoView.do?infId 예외: <HTTPError 404: '404'>
+  [AJAX] https://data.seoul.go.kr/dataList/openApiView.do?infId=OA-15 예외: <HTTPError 404: '404'>
+== 온비드 가이드 정찰 ==
+  검색결과 데이터셋 ID: ['15157207', '15157218', '15157220', '15157222', '15157247', '15157251']
+  [15157207] 한국자산관리공사_차세대 온비드 부동산 물건목록 조회서비스 | 공공데이터포털
+    파일링크 0개, atchFileId []
+  [15157218] 한국자산관리공사_차세대 온비드 공고상세 조회서비스 | 공공데이터포털
+    파일링크 0개, atchFileId []
+  [15157220] 한국자산관리공사_차세대 온비드 공고상세 물건정보 조회서비스 | 공공데이터포털
+    파일링크 0개, atchFileId []
+정찰 완료
