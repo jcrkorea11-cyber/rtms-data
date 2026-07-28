@@ -1,35 +1,25 @@
-=== run 30341103206 2026-07-28T08:07:36Z ===
-== 명세 탐색 ==
-  [명세 swagger.json] 예외: <HTTPError 404: 'Not Found'>
-  [명세 openapi.json] 예외: <HTTPError 404: 'Not Found'>
-  [명세 api-docs] 예외: <HTTPError 404: 'Not Found'>
-  [명세 swagger-ui.html] 예외: <HTTPError 404: 'Not Found'>
-  [명세 (root)] 예외: <HTTPError 500: 'Internal Server Error'>
-== 연산명 탐색 ==
-  [OnbidRlstListSrvc2/getRlstList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getOnbidRlstList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getRlstList] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getOnbidRlstList] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getRlstCltrList2] status=200 total=0 items=0 앞200자='<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <result> <resultCode>11</resultCode> <resultMsg>NO_MANDATORY_REQUEST_PARAMETERS_ERROR</resultMsg> </result> '
-  [OnbidRlstListSrvc2/getOnbidRlstCltrList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getRealEstateList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getRlstBasisList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getOnbidRlstListInfo2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidRlstListSrvc2/getRlstListInfo2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidPbancListSrvc2/getPbancList2] status=200 total=0 items=0 앞200자='<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <result> <resultCode>11</resultCode> <resultMsg>NO_MANDATORY_REQUEST_PARAMETERS_ERROR</resultMsg> </result> '
-  [OnbidCltrBidRsltListSrvc2/getCltrBidRsltList2] status=200 total=0 items=0 앞200자='<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <result> <resultCode>11</resultCode> <resultMsg>NO_MANDATORY_REQUEST_PARAMETERS_ERROR</resultMsg> </result> '
-  [OnbidCltrBidRsltListSrvc2/getOnbidCltrBidRsltList2] status=404 total=None items=0 앞200자='API not found '
-  [OnbidCltrBidRsltListSrvc2/getCltrBidRsltList] status=404 total=None items=0 앞200자='API not found '
-== 필수 파라미터 탐색 (getRlstCltrList2) ==
-  [파라미터 {'DPSL_MTD_CD': '0001'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'DPSL_MTD_CD': '0001', 'CTGR_HIRK_ID': '10000'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'CTGR_HIRK_ID': '10000'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'SIDO': '서울특별시'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'DPSL_MTD_CD': '0001', 'SIDO': '서울특별시'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'PBCT_BEGN_DTM': '202607010000', 'PBCT_CLS_DTM': '202608312359'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'DPSL_MTD_CD': '0001', 'PBCT_BEGN_DTM': '202607010000', 'PBCT_CLS_DTM': '202608312359'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'BID_BEGN_YMD': '20260701', 'BID_CLS_YMD': '20260831'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'PBNC_BGNG_YMD': '20260701', 'PBNC_END_YMD': '20260831'}] status=200 rc=11 total=0 items=0
-  [파라미터 {'RQST_BGNG_YMD': '20260701', 'RQST_END_YMD': '20260831'}] status=200 rc=11 total=0 items=0
-[중단] 필수 파라미터 조합을 찾지 못함 — 활용가이드 docx 필요 (사용자에게 미리보기 화면 요청)
+=== run 30359036372 2026-07-28T12:27:39Z ===
+== 재산구분코드 탐색 ==
+  prptDivCd=0001 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0001 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0002 pvctTrgtYn=N: rc=00 total=63 → 사용
+  prptDivCd=0002 pvctTrgtYn=Y: rc=00 total=20 → 사용
+  prptDivCd=0003 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0003 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0004 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0004 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0005 pvctTrgtYn=N: rc=00 total=874 → 사용
+  prptDivCd=0005 pvctTrgtYn=Y: rc=00 total=1196 → 사용
+  prptDivCd=0006 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0006 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=1 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=1 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=2 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=2 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=3 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=3 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=4 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=4 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+서울 공매 부동산 물건: 2153건 저장 (API 호출 43회)
+필드: ['_prptDivCd', '_pvctTrgtYn', 'alcYn', 'apslEvlAmt', 'apslPrcCtrsLowstBidRto', 'batcBidYn', 'bidDivCd', 'bidDivNm', 'bidMthodCd', 'bidMthodNm', 'bidPrgnNft', 'bldSqms', 'cltrBidBgngDt', 'cltrBidEndDt', 'cltrMngNo', 'cltrStatMngCd', 'cltrUsgLclsCtgrId', 'cltrUsgLclsCtgrNm', 'cltrUsgMclsCtgrId', 'cltrUsgMclsCtgrNm', 'cltrUsgSclsCtgrId', 'cltrUsgSclsCtgrNm', 'collbBidPsblYn', 'cptnMthodCd', 'cptnMthodNm', 'crtnYn', 'dspsMthodCd', 'dspsMthodNm', 'dtbtRqrEdtmCont', 'eltrGrprUseYn', 'evcRsbyTrgtCont', 'feeRate', 'frstBidPrc', 'frstCtrsLowstBidPrcRto', 'landSqms', 'lctnEmdNm', 'lctnSdnm', 'lctnSggnm', 'lowstBidPrcIndctCont', 'ltnoPnu', 'mdfcnDt', 'onbidCltrNm', 'onbidCltrno', 'onbidPbancNo', 'orgNm', 'pbctCdtnNo', 'pbctNo', 'pbctNsq', 'pbctStatCd', 'pbctStatNm', 'pbctsn', 'prptDivCd', 'prptDivNm', 'pvctTrgtYn', 'rdnmPnu', 'rentMthodNm', 'rentPerdCont', 'rqstOrgNm', 'subtBidPsblYn', 'thnlImgUrlAdr', 'totalamtUnpcDivCd', 'totalamtUnpcDivNm', 'twtmGthrBidPsblYn', 'usbdNft']
 exit_code=0
