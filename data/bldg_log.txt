@@ -1,13 +1,13 @@
-=== run 30784338563 2026-08-03T04:24:27Z ===
+=== run 30876282158 2026-08-04T03:59:05Z ===
 [서울탐색] 페이지에서 발견한 서비스명 후보: []
 [서울탐색] BldRgstStdInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] buildingRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] OpenBldRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
-[진단 NrgTrade(대조군)] 예외: URLError(TimeoutError('timed out'))
-[진단 건축HUB 표제부] 예외: URLError(TimeoutError('timed out'))
-[진단 건축HUB 표제부(bun지정)] 예외: URLError(TimeoutError('timed out'))
-[진단 건축HUB 기본개요] 예외: URLError(TimeoutError('timed out'))
-[진단 구버전 BldRgstService_v2] 예외: URLError(TimeoutError('timed out'))
+[진단 NrgTrade(대조군)] status=200 len=893 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=6BCD357E2774754B3AA383EE59A21E7C; Path=/oasis; Secure; HttpOnly', 'Content-Type': 'application/xml;charset=utf-8', 'content-length': '893'} 앞200바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear><buildingAr>399.63<'
+[진단 건축HUB 표제부] 예외: TimeoutError('timed out')
+[진단 건축HUB 표제부(bun지정)] 예외: TimeoutError('timed out')
+[진단 건축HUB 기본개요] 예외: TimeoutError('timed out')
+[진단 구버전 BldRgstService_v2] 예외: TimeoutError('timed out')
 마스킹 지번 통건물 거래: 3289건
 법정동코드 매핑 실패 동 89개 → data/bldg_unmapped_dongs.csv
 API 호출 0회 / 캐시 보유 동 287 / 필요 동 287
