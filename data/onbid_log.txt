@@ -1,4 +1,4 @@
-=== run 31851301922 2026-08-14T23:43:14Z ===
+=== run 31915337168 2026-08-15T23:40:36Z ===
 == 재산구분코드 탐색 ==
   prptDivCd=0001 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
   prptDivCd=0001 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
