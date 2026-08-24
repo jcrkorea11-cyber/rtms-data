@@ -1,5 +1,25 @@
-=== run 32674361092 2026-08-23T23:41:43Z ===
+=== run 32790542159 2026-08-24T23:42:42Z ===
 == 재산구분코드 탐색 ==
-[중단] 유효한 재산구분코드 없음 — 응답 원문 확인 필요
-  원문 500자: URLError(TimeoutError('timed out'))
+  prptDivCd=0001 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0001 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0002 pvctTrgtYn=N: rc=00 total=56 → 사용
+  prptDivCd=0002 pvctTrgtYn=Y: rc=00 total=21 → 사용
+  prptDivCd=0003 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0003 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0004 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0004 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=0005 pvctTrgtYn=N: rc=00 total=1174 → 사용
+  prptDivCd=0005 pvctTrgtYn=Y: rc=00 total=1170 → 사용
+  prptDivCd=0006 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=0006 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=1 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=1 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=2 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=2 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=3 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=3 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+  prptDivCd=4 pvctTrgtYn=N: rc=03 (NODATA_ERROR)
+  prptDivCd=4 pvctTrgtYn=Y: rc=03 (NODATA_ERROR)
+서울 공매 부동산 물건: 2421건 저장 (API 호출 46회)
+필드: ['_prptDivCd', '_pvctTrgtYn', 'alcYn', 'apslEvlAmt', 'apslPrcCtrsLowstBidRto', 'batcBidYn', 'bidDivCd', 'bidDivNm', 'bidMthodCd', 'bidMthodNm', 'bidPrgnNft', 'bldSqms', 'cltrBidBgngDt', 'cltrBidEndDt', 'cltrMngNo', 'cltrStatMngCd', 'cltrUsgLclsCtgrId', 'cltrUsgLclsCtgrNm', 'cltrUsgMclsCtgrId', 'cltrUsgMclsCtgrNm', 'cltrUsgSclsCtgrId', 'cltrUsgSclsCtgrNm', 'collbBidPsblYn', 'cptnMthodCd', 'cptnMthodNm', 'crtnYn', 'dspsMthodCd', 'dspsMthodNm', 'dtbtRqrEdtmCont', 'eltrGrprUseYn', 'evcRsbyTrgtCont', 'feeRate', 'frstBidPrc', 'frstCtrsLowstBidPrcRto', 'landSqms', 'lctnEmdNm', 'lctnSdnm', 'lctnSggnm', 'lowstBidPrcIndctCont', 'ltnoPnu', 'mdfcnDt', 'onbidCltrNm', 'onbidCltrno', 'onbidPbancNo', 'orgNm', 'pbctCdtnNo', 'pbctNo', 'pbctNsq', 'pbctStatCd', 'pbctStatNm', 'pbctsn', 'prptDivCd', 'prptDivNm', 'pvctTrgtYn', 'rdnmPnu', 'rentMthodNm', 'rentPerdCont', 'rqstOrgNm', 'subtBidPsblYn', 'thnlImgUrlAdr', 'totalamtUnpcDivCd', 'totalamtUnpcDivNm', 'twtmGthrBidPsblYn', 'usbdNft']
 exit_code=0
