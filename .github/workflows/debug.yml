@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
     paths: ["debug_probe.py"]
+concurrency:
+  group: rtms-repo-push
+  cancel-in-progress: false
+
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -11,6 +15,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -18,13 +25,16 @@ jobs:
         run: |
           echo "=== run $GITHUB_RUN_ID $(date -u +%FT%TZ) ===" > data/debug_log.txt
           python -u debug_probe.py 2>&1 | tee -a data/debug_log.txt
-      - name: Commit
+      - name: Preserve collected data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-data-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/
+            collect.log
+          retention-days: 14
+      - name: Commit & push
         if: always()
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add data/
-          git diff --cached --quiet && echo no changes && exit 0
-          git commit -m "debug: probe $(date -u +%H%M)"
-          for i in 1 2 3; do git pull --rebase origin main && git push && exit 0; sleep 5; done
-          exit 1
+          bash .github/scripts/push-data.sh "debug: collected $(date -u +%F)"

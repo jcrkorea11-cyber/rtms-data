@@ -2,25 +2,47 @@ name: daily-rtms-collect
 on:
   schedule:
     - cron: "30 23 * * *"   # 매일 08:30 KST
+  push:
+    branches: [main]
+    paths: [".github/workflows/collect.yml", ".github/scripts/push-data.sh"]
   workflow_dispatch: {}      # 수동 실행 버튼
 permissions:
   contents: write
+concurrency:
+  group: rtms-repo-push
+  cancel-in-progress: false
+
 jobs:
   collect:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: collect
         env:
           SEOUL_API_KEY: ${{ secrets.SEOUL_API_KEY }}
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
-        run: python collect.py
-      - name: commit
         run: |
-          git config user.name "rtms-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add data/
-          git diff --cached --quiet || git commit -m "rtms: $(date -u +%F) collect"
-          git push
+          set -o pipefail
+          python -u collect.py 2>&1 | tee collect.log
+          # The collector currently tolerates API failures; do not publish partial snapshots.
+          if grep -Eq '요청 실패|응답 코드|오류:|수집 건너뜀|실패 월 [1-9]' collect.log; then
+            echo "::error::Incomplete API collection; existing repository data left intact."
+            exit 1
+          fi
+      - name: Preserve collected data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collect-data-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/
+            collect.log
+          retention-days: 14
+      - name: Commit & push
+        run: |
+          bash .github/scripts/push-data.sh "collect: collected $(date -u +%F)"
