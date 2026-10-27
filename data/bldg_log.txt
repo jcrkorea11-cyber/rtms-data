@@ -1,15 +1,19 @@
-=== run 40275326510 2026-10-26T05:38:47Z ===
+=== run 40457519310 2026-10-27T05:49:50Z ===
 [서울탐색] 페이지에서 발견한 서비스명 후보: []
 [서울탐색] BldRgstStdInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] buildingRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
 [서울탐색] OpenBldRgstInfo: len=90 앞300자='{"RESULT":{"CODE":"ERROR-500","MESSAGE":"서버 오류입니다.\\n지속적으로 발생시 열린 데이터 광장으로 문의(Q&A) 바랍니다."}}'
-[진단 NrgTrade(대조군)] status=200 len=893 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=F4B385E6060E51A9E9D987CF87EDD919; Path=/oasis; Secure; HttpOnly', 'Content-Type': 'application/xml;charset=utf-8', 'content-length': '893'} 앞200바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear><buildingAr>399.63<'
-[진단 건축HUB 표제부] status=200 len=2514 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=VU3lp12NSf6HG7hbaXwjKrpy8UO7ZmPmm5C6FTaL.api20; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '2514'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
-[진단 건축HUB 표제부(bun지정)] status=200 len=2511 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=OEmNgMrT-Ah9La8tOiuQ7Ugs3nu8qrNPPFTbXskd.api20; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '2511'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
-[진단 건축HUB 기본개요] status=200 len=1154 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=PhMZqypaMrxsX3cHte9179sXBRJ5NJUHTdgLouU3.api20; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '1154'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
+[진단 NrgTrade(대조군)] status=200 len=893 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=358A5EF2CB9E3B2E25F1F4BAA3723CA9; Path=/oasis; Secure; HttpOnly', 'Content-Type': 'application/xml;charset=utf-8', 'content-length': '893'} 앞200바이트=b'<?xml version="1.0" encoding="utf-8" standalone="yes"?><response><header><resultCode>000</resultCode><resultMsg>OK</resultMsg></header><body><items><item><buildYear>1996</buildYear><buildingAr>399.63<'
+[진단 건축HUB 표제부] status=200 len=2514 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=bp0h9cwSV46-x2d-VXFNIVGTlcIh91fBWLc7GK2r.api10; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '2514'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
+[진단 건축HUB 표제부(bun지정)] status=200 len=2511 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=62Ky2nXMAF8LO0cHgbw6XsobjmXY7Yap7Lb82H9I.api10; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '2511'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
+[진단 건축HUB 기본개요] status=200 len=1154 headers={'Server': 'Apache', 'Set-Cookie': 'JSESSIONID=FXC0vXkJnxsgEXzVhbfReHZMnlIxZ9O1fBAUvVuk.api10; path=/', 'Content-Type': 'application/xml;charset=UTF-8', 'content-length': '1154'} 앞200바이트=b'<response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE</resultMsg></header><body><items><item><rnum>1</rnum><platPlc>\xec\x84\x9c\xec\x9a\xb8\xed\x8a\xb9\xeb\xb3\x84\xec\x8b\x9c \xea\xb0\x95\xeb\x82\xa8\xea\xb5\xac \xeb\x85\xbc\xed\x98\x84\xeb\x8f\x99 1\xeb\xb2\x88\xec\xa7\x80</platPlc><sigunguCd>116'
 [진단 구버전 BldRgstService_v2] 예외: <HTTPError 400: 'Bad Request'>
-마스킹 지번 통건물 거래: 3583건
-법정동코드 매핑 실패 동 87개 → data/bldg_unmapped_dongs.csv
-API 호출 0회 / 캐시 보유 동 295 / 필요 동 295
-매칭 완료: 처리 3232건 / 단일 특정 1161건 / 후보 없음 1399건 → data/bldg_match.csv
+마스킹 지번 통건물 거래: 3881건
+법정동코드 매핑 실패 동 86개 → data/bldg_unmapped_dongs.csv
+  캐시 완료 11410/11200: 588건 (신고 588)
+  캐시 완료 11110/13300: 238건 (신고 238)
+  캐시 완료 11290/10600: 59건 (신고 59)
+  캐시 완료 11560/12300: 79건 (신고 79)
+API 호출 11회 / 캐시 보유 동 299 / 필요 동 299
+매칭 완료: 처리 3507건 / 단일 특정 1264건 / 후보 없음 1512건 → data/bldg_match.csv
 exit_code=0
