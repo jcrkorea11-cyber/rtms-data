@@ -169,7 +169,8 @@ def compare_snapshots(baseline, candidate, cancelled=None):
         removed = old-new
         if cancelled is not None:
             status_fields = {"RTRCN_DAY", "cdealDay", "cdealType", "해제사유발생일", "해제여부"}
-            normalize = lambda pairs: tuple(sorted((k, v) for k, v in pairs if v and k not in status_fields))
+            normalize = lambda pairs: tuple(sorted((k, str(v)) for k, v in pairs
+                                                   if v is not None and str(v) != "" and k not in status_fields))
             proof = Counter(normalize(row.items()) for row in cancelled.get(path.name, []))
             missing = Counter()
             for row, count in removed.items():

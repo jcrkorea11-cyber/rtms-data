@@ -18,7 +18,18 @@
 - The two incident months returned 7 and 70 raw rows; after existing cancellation filtering, 6 and 66 remained, exactly matching the published baseline, including row values and order.
 - Full first candidate: 26,935 rows versus 26,888 baseline rows; 92 added row occurrences and 45 removed row occurrences. Changes include housing, beyond the incident commercial months.
 - Publication was correctly blocked by the first conservative comparison. The first recovery artifact contains unchanged baseline data plus the full candidate, comparison and collection log: artifact 13085604868, retained through November 15.
-- Final evidence-aware run: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41313807243 — verification pending at this checkpoint.
+- Final evidence-aware run: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41313807243 — completed; all API queries returned, but publication blocked by historical-data comparison.
+
+## Final status — verified 2026-11-01 23:30 KST
+- Final run 41313807243 finished at 23:24 KST. All 575 commercial district/month partitions returned (25 districts × January 2025 through November 2026), all districts reported zero failed months. Two real timeouts recovered on retry. Both incident partitions again exactly match the 6/66-row baseline after cancellation filtering.
+- Final candidate totals: 26,962 rows versus 26,888 published baseline; 106 added and 32 removed row occurrences.
+- Final audit replay also normalizes numeric JSON cancellation fields to CSV strings. Twelve unit tests pass. Replaying the actual final artifact with this correction proves 7 removals are explicit cancellations; 25 remain unverified (24 housing row occurrences, 1 Jongno commercial row).
+- Numeric normalization was validated locally against the real artifact; a new live API run of that final normalization-only revision was not performed. It would still block the same candidate because 25 removals lack exact cancellation evidence.
+- No data files were published or overwritten. Both validation runs skipped Commit & push. Current published data remains the baseline; automatic collection is NOT declared fully healthy.
+- Final artifact 13087756340 retains baseline, candidate, cancellation evidence, comparison and collection log through November 15: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41313807243/artifacts/13087756340
+- Detailed corrected per-file comparison: docs/rtms-recovery-comparison-20261101.json.
+- Next action: investigate the 25 unverified row removals against upstream records and paging consistency. Housing candidate membership changed between the two complete runs; the root cause is not established. Do not relax the guard, union snapshots blindly, or publish the incomplete/ambiguous replacement. Re-run after resolving these differences and verify the final push.
+- No verification run remains active and no new background follow-up automation was configured.
 
 ## Previous incident (historical record)
 

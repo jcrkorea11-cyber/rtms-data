@@ -87,6 +87,15 @@ class RecoveryTests(unittest.TestCase):
             self.assertEqual(result['confirmed_cancellations'], 1)
             self.assertEqual(result['unverified_removals'], 1)
 
+    def test_numeric_cancellation_fields_match_csv_strings(self):
+        with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+            (Path(a)/'x.csv').write_text('LAND_AREA,THING_AMT,RTRCN_DAY\n10.0,0.0,\n')
+            (Path(b)/'x.csv').write_text('LAND_AREA,THING_AMT,RTRCN_DAY\n')
+            proof = {'x.csv': [{'LAND_AREA':10.0,'THING_AMT':0.0,'RTRCN_DAY':'20261101'}]}
+            result = collect.compare_snapshots(Path(a), Path(b), proof)['x.csv']
+            self.assertEqual(result['confirmed_cancellations'], 1)
+            self.assertEqual(result['unverified_removals'], 0)
+
 
 if __name__ == '__main__':
     unittest.main()
