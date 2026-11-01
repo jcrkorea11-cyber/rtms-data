@@ -1,3 +1,27 @@
+# RTMS recovery — 2026-11-01 (KST)
+
+## Verified recovery
+- Incident run: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41264888905
+- Actual failed partitions: commercial 11320/202508 and 11560/202511. The latter was November 2025, not November 2026.
+- Failure artifact contained 0 retained rows in both failed months. Existing published data retained 6 and 66 rows respectively.
+- Fix commits: c4125d36813ca72d5e2527daac5b7b4e78603244; 6c8a3a45afc310142bcdf87432eea96f6b1d2662.
+- Bounded GET retries (default four attempts), exponential backoff/jitter, increasing timeouts (90/120/150/180 seconds), Retry-After handling. Certificate validation and non-retryable authentication errors are not bypassed. Request URLs/secrets are not logged.
+- Commercial pagination validates explicit success, totalCount and page completeness.
+- Collection uses a temporary staging directory; published files remain untouched on collection failure or unverified historical row removal.
+- Existing cancellation filtering remains. Removal is permitted only when the old record exactly matches an explicitly cancelled upstream record after excluding cancellation status fields. Unknown differences block publication and preserve candidates.
+- Comparison, cancellation evidence and candidate outputs are retained as Actions artifacts. Shared concurrency and non-force push retries remain.
+
+## Validation
+- 11 unit tests pass locally and the final Actions test step passes; additional isolated end-to-end staging tests verify that unverified removal preserves existing files and exact cancellation evidence is accepted.
+- First recovery run: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41313421649
+- All 25 commercial districts completed with zero failed months. Two real network timeouts recovered on retry (14:01:32 and 14:07:51 UTC), distinct from mocked test retries.
+- The two incident months returned 7 and 70 raw rows; after existing cancellation filtering, 6 and 66 remained, exactly matching the published baseline, including row values and order.
+- Full first candidate: 26,935 rows versus 26,888 baseline rows; 92 added row occurrences and 45 removed row occurrences. Changes include housing, beyond the incident commercial months.
+- Publication was correctly blocked by the first conservative comparison. The first recovery artifact contains unchanged baseline data plus the full candidate, comparison and collection log: artifact 13085604868, retained through November 15.
+- Final evidence-aware run: https://github.com/jcrkorea11-cyber/rtms-data/actions/runs/41313807243 — verification pending at this checkpoint.
+
+## Previous incident (historical record)
+
 # RTMS collection incident — 2026-10-22 (KST)
 
 ## Verified evidence
@@ -24,3 +48,4 @@ Commit 4c0a32f45d0c81584e02de47f1675d666012e926 changes infrastructure only. No 
 
 ## Next action
 Dispatch daily-rtms-collect on main, verify collection completeness, archive, commit and remote push; compare updated summary/CSV history and counts to logs. Investigate upstream errors before publishing incomplete data. GitHub concurrency permits one pending run per group; a newer pending run may replace an older pending run, though running collection is not cancelled. Displaced scheduled snapshots are refreshed by the next full run.
+
