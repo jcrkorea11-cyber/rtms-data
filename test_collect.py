@@ -78,6 +78,15 @@ class RecoveryTests(unittest.TestCase):
             (Path(b)/'x.csv').write_text('b,a\n2,1\n3,2\n')
             self.assertEqual(collect.compare_snapshots(Path(a), Path(b))['x.csv'], {'before':2,'after':2,'added':1,'removed':1})
 
+    def test_only_exact_upstream_cancellation_is_verified(self):
+        with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+            (Path(a)/'x.csv').write_text('dealAmount,cdealDay\n100,\n200,\n')
+            (Path(b)/'x.csv').write_text('dealAmount,cdealDay\n')
+            proof = {'x.csv': [{'dealAmount':'100','cdealDay':'20261101'}, {'dealAmount':'300','cdealDay':'20261101'}]}
+            result = collect.compare_snapshots(Path(a), Path(b), proof)['x.csv']
+            self.assertEqual(result['confirmed_cancellations'], 1)
+            self.assertEqual(result['unverified_removals'], 1)
+
 
 if __name__ == '__main__':
     unittest.main()

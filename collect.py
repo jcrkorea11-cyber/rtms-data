@@ -29,6 +29,7 @@ EXCLUDE_USE = ("아파트", "오피스텔", "연립다세대", "연립", "다세
 MAX_PRICE = 1_000_000
 BATCH = 1000
 OUT = Path("data"); OUT.mkdir(exist_ok=True)
+CANCELLED = {}
 
 def http(url):
     return get_text(url)
@@ -73,6 +74,8 @@ def run_housing():
         rows = []
         for y in YEARS:
             got = seoul_rows(y, gu)
+            CANCELLED.setdefault(f"rtms_{gu}_{name}.csv", []).extend(
+                {k: r.get(k, "") for k in H_FIELDS} for r in got if str(r.get("RTRCN_DAY") or "").strip())
             kept = [r for r in got if keep_house(r)]
             rows += kept
             print(f"[주택 {name} {y}] {len(got)} → {len(kept)}")
@@ -141,6 +144,7 @@ def run_commercial():
                 if v and v not in ("O부재", "-"):
                     return True
             return False
+        CANCELLED[f"nrg_{gu}_{name}.csv"] = [r for r in rows if cancelled(r)]
         rows = [r for r in rows if not cancelled(r)]
         headers = sorted({k for r in rows for k in r})
         with open(OUT / f"nrg_{gu}_{name}.csv", "w", newline="", encoding="utf-8") as f:
@@ -152,7 +156,7 @@ def run_commercial():
         print(f"[상가 {name}] {len(rows)}건 (실패 월 {fail})")
     return summary
 
-def compare_snapshots(baseline, candidate):
+def compare_snapshots(baseline, candidate, cancelled=None):
     report = {}
     for path in sorted(candidate.glob("*.csv")):
         def read(p):
@@ -162,14 +166,29 @@ def compare_snapshots(baseline, candidate):
                 return Counter(tuple(sorted((k, v) for k, v in row.items() if v))
                                for row in csv.DictReader(f))
         old, new = read(baseline / path.name), read(path)
+        removed = old-new
+        if cancelled is not None:
+            status_fields = {"RTRCN_DAY", "cdealDay", "cdealType", "해제사유발생일", "해제여부"}
+            normalize = lambda pairs: tuple(sorted((k, v) for k, v in pairs if v and k not in status_fields))
+            proof = Counter(normalize(row.items()) for row in cancelled.get(path.name, []))
+            missing = Counter()
+            for row, count in removed.items():
+                missing[normalize(row)] += count
+            verified = sum((missing & proof).values())
+        else:
+            verified = 0
         report[path.name] = {"before": sum(old.values()), "after": sum(new.values()),
-                             "added": sum((new-old).values()), "removed": sum((old-new).values())}
+                             "added": sum((new-old).values()), "removed": sum(removed.values())}
+        if cancelled is not None:
+            report[path.name].update(confirmed_cancellations=verified,
+                                     unverified_removals=sum(removed.values())-verified)
     return report
 
 
 def main():
     global OUT
     baseline = OUT
+    CANCELLED.clear()
     # All requests must succeed before any published file is touched.
     with tempfile.TemporaryDirectory(prefix="rtms-candidate-") as tmp:
         OUT = Path(tmp)
@@ -179,11 +198,13 @@ def main():
             (OUT / "summary.json").write_text(
                 json.dumps({"housing": s1, "commercial": s2}, ensure_ascii=False, indent=1),
                 encoding="utf-8")
-            comparison = compare_snapshots(baseline, OUT)
+            comparison = compare_snapshots(baseline, OUT, CANCELLED)
             Path("collection-comparison.json").write_text(
                 json.dumps(comparison, ensure_ascii=False, indent=2), encoding="utf-8")
-            # Retractions/changed historical records require review, never force a replacement.
-            if any(v["removed"] for v in comparison.values()):
+            Path("collection-cancellations.json").write_text(
+                json.dumps(CANCELLED, ensure_ascii=False, indent=2), encoding="utf-8")
+            # Only exact matches to explicit upstream cancellation records may be removed.
+            if any(v["unverified_removals"] for v in comparison.values()):
                 shutil.copytree(OUT, "collection-candidate", dirs_exist_ok=True)
                 raise RuntimeError("Historical rows changed; candidate preserved for review")
             for path in OUT.iterdir():
