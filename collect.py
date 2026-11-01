@@ -5,6 +5,9 @@ B. 국토부: 상업업무용(상가·빌딩) 실거래 (DATA_GO_KR_KEY) — XML
 해제(취소)거래 제외, 100억 필터는 주택만(상가는 원본 보존, 분석 단계 필터)
 """
 import csv, json, os, sys, urllib.request
+import shutil, tempfile
+from collections import Counter
+from resilient_http import get_text
 import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
@@ -28,8 +31,7 @@ BATCH = 1000
 OUT = Path("data"); OUT.mkdir(exist_ok=True)
 
 def http(url):
-    with urllib.request.urlopen(url, timeout=90) as r:
-        return r.read().decode("utf-8")
+    return get_text(url)
 
 # ---------- A. 서울시 주택(단독다가구) ----------
 def seoul_rows(year, gu):
@@ -40,7 +42,7 @@ def seoul_rows(year, gu):
         body = data.get("tbLnOpendataRtmsV")
         if not body:
             print(f"  [주택 {year}/{gu}] 오류: {data.get('RESULT', {})}", file=sys.stderr)
-            break
+            raise RuntimeError(f"Incomplete housing response {year}/{gu}")
         rows += body.get("row", [])
         if start + BATCH > body.get("list_total_count", 0):
             break
@@ -65,7 +67,7 @@ H_FIELDS = ["RCPT_YR","CGG_NM","STDG_NM","STDG_CD","LOTNO_SE_NM","MNO","SNO","BL
 
 def run_housing():
     if not SEOUL_KEY:
-        print("SEOUL_API_KEY 없음 — 주택 수집 건너뜀"); return {}
+        raise RuntimeError("SEOUL_API_KEY missing")
     summary = {}
     for gu, name in GUS.items():
         rows = []
@@ -93,23 +95,35 @@ def months():
     return out
 
 def molit_items(lawd, ymd):
-    url = (f"https://apis.data.go.kr/1613000/RTMSDataSvcNrgTrade/getRTMSDataSvcNrgTrade"
-           f"?serviceKey={MOLIT_KEY}&LAWD_CD={lawd}&DEAL_YMD={ymd}&numOfRows={BATCH}&pageNo=1")
-    try:
-        root = ET.fromstring(http(url))
-    except Exception as e:
-        print(f"  [상가 {lawd}/{ymd}] 요청 실패: {e}", file=sys.stderr)
-        return None
-    code = (root.findtext(".//resultCode") or "").strip()
-    if code not in ("00", "000", ""):
-        msg = (root.findtext(".//resultMsg") or "").strip()
-        print(f"  [상가 {lawd}/{ymd}] 응답 코드 {code}: {msg}", file=sys.stderr)
-        return None
-    return [{c.tag: (c.text or "").strip() for c in it} for it in root.iter("item")]
+    items, page, expected = [], 1, None
+    while True:
+        url = (f"https://apis.data.go.kr/1613000/RTMSDataSvcNrgTrade/getRTMSDataSvcNrgTrade"
+               f"?serviceKey={MOLIT_KEY}&LAWD_CD={lawd}&DEAL_YMD={ymd}&numOfRows={BATCH}&pageNo={page}")
+        try:
+            root = ET.fromstring(http(url))
+            code = (root.findtext(".//resultCode") or "").strip()
+            if code not in ("00", "000"):
+                raise ValueError("API did not return an explicit success code")
+            total = int(root.findtext(".//totalCount"))
+            if total < 0 or (expected is not None and total != expected):
+                raise ValueError("API total changed during pagination")
+            expected = total
+            batch = [{c.tag: (c.text or "").strip() for c in it} for it in root.iter("item")]
+            if len(batch) != min(BATCH, expected - len(items)):
+                raise ValueError("Incomplete API page")
+            items.extend(batch)
+            if len(items) == expected:
+                print(f"[상가 월 완료 {lawd}/{ymd}] {len(items)}건")
+                return items
+            page += 1
+        except Exception as e:
+            # Never print an exception URL: it may contain the service key.
+            print(f"  [상가 {lawd}/{ymd}] 요청 실패: {type(e).__name__}", file=sys.stderr)
+            return None
 
 def run_commercial():
     if not MOLIT_KEY:
-        print("DATA_GO_KR_KEY 없음 — 상가 수집 건너뜀"); return {}
+        raise RuntimeError("DATA_GO_KR_KEY missing")
     summary = {}
     for gu, name in GUS.items():
         rows, fail = [], 0
@@ -119,6 +133,8 @@ def run_commercial():
                 fail += 1
                 continue
             rows += items
+        if fail:
+            raise RuntimeError(f"Incomplete commercial district {gu}: {fail} months")
         def cancelled(r):
             for k in ("cdealDay", "cdealType", "해제사유발생일", "해제여부"):
                 v = str(r.get(k, "")).strip()
@@ -136,10 +152,46 @@ def run_commercial():
         print(f"[상가 {name}] {len(rows)}건 (실패 월 {fail})")
     return summary
 
+def compare_snapshots(baseline, candidate):
+    report = {}
+    for path in sorted(candidate.glob("*.csv")):
+        def read(p):
+            if not p.exists():
+                return Counter()
+            with p.open(encoding="utf-8", newline="") as f:
+                return Counter(tuple(sorted((k, v) for k, v in row.items() if v))
+                               for row in csv.DictReader(f))
+        old, new = read(baseline / path.name), read(path)
+        report[path.name] = {"before": sum(old.values()), "after": sum(new.values()),
+                             "added": sum((new-old).values()), "removed": sum((old-new).values())}
+    return report
+
+
+def main():
+    global OUT
+    baseline = OUT
+    # All requests must succeed before any published file is touched.
+    with tempfile.TemporaryDirectory(prefix="rtms-candidate-") as tmp:
+        OUT = Path(tmp)
+        try:
+            s1 = run_housing()
+            s2 = run_commercial()
+            (OUT / "summary.json").write_text(
+                json.dumps({"housing": s1, "commercial": s2}, ensure_ascii=False, indent=1),
+                encoding="utf-8")
+            comparison = compare_snapshots(baseline, OUT)
+            Path("collection-comparison.json").write_text(
+                json.dumps(comparison, ensure_ascii=False, indent=2), encoding="utf-8")
+            # Retractions/changed historical records require review, never force a replacement.
+            if any(v["removed"] for v in comparison.values()):
+                shutil.copytree(OUT, "collection-candidate", dirs_exist_ok=True)
+                raise RuntimeError("Historical rows changed; candidate preserved for review")
+            for path in OUT.iterdir():
+                shutil.copy2(path, baseline / path.name)
+            print("완료 — 주택:", sum(s1.values()), "/ 상가:", sum(s2.values()))
+        finally:
+            OUT = baseline
+
+
 if __name__ == "__main__":
-    s1 = run_housing()
-    s2 = run_commercial()
-    Path("data/summary.json").write_text(
-        json.dumps({"housing": s1, "commercial": s2}, ensure_ascii=False, indent=1),
-        encoding="utf-8")
-    print("완료 — 주택:", sum(s1.values()) if s1 else 0, "/ 상가:", sum(s2.values()) if s2 else 0)
+    main()

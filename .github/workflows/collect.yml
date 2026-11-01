@@ -22,6 +22,8 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - name: Test collection recovery
+        run: python -m unittest -v test_collect.py
       - name: collect
         env:
           SEOUL_API_KEY: ${{ secrets.SEOUL_API_KEY }}
@@ -42,7 +44,10 @@ jobs:
           path: |
             data/
             collect.log
+            collection-comparison.json
+            collection-candidate/
           retention-days: 14
       - name: Commit & push
         run: |
           bash .github/scripts/push-data.sh "collect: collected $(date -u +%F)"
+
